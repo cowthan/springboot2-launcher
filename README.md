@@ -1,9 +1,8 @@
-1
------
 
+springboot2快速启动模版
 
-# 1
+```
+git clone https://github.com/cowthan/springboot2-launcher.git
+```
 
-
-visualvm接入：
--Xmx2304m -Xms2304m -Djava.rmi.server.hostname=10.139.106.41 -Dcom.sun.management.jmxremote.port=9527 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false
+如果要修改libs逻辑，需要切换到分支libs

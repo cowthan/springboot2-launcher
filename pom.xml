@@ -19,8 +19,6 @@
 	
 	 <modules>
         <module>demo</module>
-        <module>app</module>
-        <module>libs</module>
     </modules>
 	
     <dependencies>  
