@@ -1,0 +1,377 @@
+{
+  "code": 200,
+  "data": [
+    {
+      "name": "系统管理",
+      "path": "/dev/sys",
+      "hidden": false,
+      "redirect": "noRedirect",
+      "component": "Layout",
+      "alwaysShow": true,
+      "meta": {
+        "title": "系统管理",
+        "icon": "log",
+        "noCache": false
+      },
+      "children": [
+        {
+          "name": "doc",
+          "path": "doc",
+          "hidden": false,
+          "component": "dev/sys/doc",
+          "meta": {
+            "title": "系统说明",
+            "icon": "dashboard",
+            "noCache": false
+          }
+        },
+        {
+          "name": "doc",
+          "path": "doc",
+          "hidden": false,
+          "component": "dev/sys/monitor",
+          "meta": {
+            "title": "平台监控",
+            "icon": "dashboard",
+            "noCache": false
+          }
+        },
+        {
+          "name": "sys-config",
+          "path": "sys-config",
+          "hidden": false,
+          "component": "dev/sys/sys-config",
+          "meta": {
+            "title": "系统设置",
+            "icon": "dashboard",
+            "noCache": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "进出数据",
+      "path": "/dev/datas",
+      "hidden": false,
+      "redirect": "noRedirect",
+      "component": "Layout",
+      "alwaysShow": true,
+      "meta": {
+        "title": "进出数据",
+        "icon": "log",
+        "noCache": false
+      },
+      "children": [
+        {
+          "name": "cn-data",
+          "path": "cn-data",
+          "hidden": false,
+          "component": "dev/cn-data/from-cn",
+          "meta": {
+            "title": "收发列表",
+            "icon": "dashboard",
+            "noCache": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "数据构建",
+      "path": "/dev/forms",
+      "hidden": false,
+      "redirect": "noRedirect",
+      "component": "Layout",
+      "alwaysShow": true,
+      "meta": {
+        "title": "数据构建",
+        "icon": "log",
+        "noCache": false
+      },
+      "children": [
+        {
+          "name": "form_build",
+          "path": "form_build",
+          "hidden": false,
+          "component": "dev/form_build/index",
+          "meta": {
+            "title": "表单生成",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "datagram_data",
+          "path": "datagram_data",
+          "hidden": false,
+          "component": "dev/forms/datagram-data",
+          "meta": {
+            "title": "构建用户报文",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "datagram_ack",
+          "path": "datagram_ack",
+          "hidden": false,
+          "component": "dev/forms/datagram-ack",
+          "meta": {
+            "title": "构建回执报文",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "packet-collect",
+          "path": "packet-collect",
+          "hidden": false,
+          "component": "dev/forms/packet-collect",
+          "meta": {
+            "title": "构建采集包",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "packet-communication",
+          "path": "packet-communication",
+          "hidden": false,
+          "component": "dev/forms/packet-communication",
+          "meta": {
+            "title": "构建通信包",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "frame",
+          "path": "frame",
+          "hidden": false,
+          "component": "dev/forms/frame",
+          "meta": {
+            "title": "构建&发送帧",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "multi-frame",
+          "path": "multi-frame",
+          "hidden": false,
+          "component": "dev/forms/multi-frame",
+          "meta": {
+            "title": "发送多帧半包",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "all-field",
+          "path": "all-field",
+          "hidden": false,
+          "component": "dev/forms/any-api",
+          "meta": {
+            "title": "完整返向接口",
+            "icon": "log",
+            "noCache": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "简易发消息",
+      "path": "/dev/send",
+      "hidden": false,
+      "redirect": "noRedirect",
+      "component": "Layout",
+      "alwaysShow": true,
+      "meta": {
+        "title": "简易发消息",
+        "icon": "log",
+        "noCache": false
+      },
+      "children": [
+        {
+          "name": "send-intro",
+          "path": "send-intro",
+          "hidden": false,
+          "component": "dev/send/intro",
+          "meta": {
+            "title": "声明",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "send-msg",
+          "path": "send-msg",
+          "hidden": false,
+          "component": "dev/send/send-msg",
+          "meta": {
+            "title": "发终端消息",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "scheduled_location_report",
+          "path": "scheduled_location_report",
+          "hidden": false,
+          "component": "dev/send/scheduled_location_report",
+          "meta": {
+            "title": "定时位置上报",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "plan",
+          "path": "plan",
+          "hidden": false,
+          "component": "dev/send/plan",
+          "meta": {
+            "title": "测运控计划控制",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "send-sms",
+          "path": "send-sms",
+          "hidden": false,
+          "component": "dev/send/send-sms",
+          "meta": {
+            "title": "发短信",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "send-app-cmd",
+          "path": "send-app-cmd",
+          "hidden": false,
+          "component": "dev/send/send-app-cmd",
+          "meta": {
+            "title": "发应用指令",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "send-sat-cmd",
+          "path": "send-sat-cmd",
+          "hidden": false,
+          "component": "dev/send/send-sat-cmd",
+          "meta": {
+            "title": "上注特殊授权",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "send-sat-ppp",
+          "path": "send-sat-ppp",
+          "hidden": false,
+          "component": "dev/send/send-sat-ppp",
+          "meta": {
+            "title": "上注导航增强",
+            "icon": "log",
+            "noCache": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "工具",
+      "path": "/dev/tools",
+      "hidden": false,
+      "redirect": "noRedirect",
+      "component": "Layout",
+      "alwaysShow": true,
+      "meta": {
+        "title": "工具",
+        "icon": "log",
+        "noCache": false
+      },
+      "children": [
+        {
+          "name": "pretty-bytes",
+          "path": "pretty-bytes",
+          "hidden": false,
+          "component": "dev/tools/pretty-bytes",
+          "meta": {
+            "title": "字节流美化",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "api-test",
+          "path": "api-test",
+          "hidden": false,
+          "component": "dev/tools/api-test",
+          "meta": {
+            "title": "接口验证",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "cn-log",
+          "path": "cn-log",
+          "hidden": false,
+          "component": "dev/tools/cn-log",
+          "meta": {
+            "title": "核心网日志",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "decoder1",
+          "path": "decoder1",
+          "hidden": false,
+          "component": "dev/tools/decoder1",
+          "meta": {
+            "title": "全能解析",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "decoder2",
+          "path": "decoder2",
+          "hidden": false,
+          "component": "dev/tools/decoder2",
+          "meta": {
+            "title": "高级解码",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "check-terminal",
+          "path": "check-terminal",
+          "hidden": false,
+          "component": "dev/tools/check-terminal",
+          "meta": {
+            "title": "终端可达性",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "create-terminal",
+          "path": "create-terminal",
+          "hidden": false,
+          "component": "dev/tools/create-terminal",
+          "meta": {
+            "title": "批量建终端",
+            "icon": "log",
+            "noCache": false
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -38,7 +38,6 @@ public class DyRestResponseWrapAdvice extends AbstractMappingJacksonResponseBody
         if (method != null && MediaType.APPLICATION_JSON.equals(contentType)) {
             Object returnValue = bodyContainer.getValue();
             if (method.getReturnType() == ResponseEntity.class) {
-                log.info("接口返回ResponseEntity，不进行任何修改");
                 return;
             }
             if (returnValue instanceof Response) {

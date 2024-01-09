@@ -1,0 +1,11 @@
+{
+    "code": 200,
+    "data":{
+        "nickName": "1111",
+        "phonenumber": "13333333333",
+        "email": "222@xx.com",
+        "sex":"2",
+        "createTime":"2021-06-20 12:12:12",
+        "headIcon":"http://mhfile.dongpaodi.com/xdoc/2023/04/30_c5f784cbf5633a06b1d9f6ec13d87f0c.png"
+    }
+}

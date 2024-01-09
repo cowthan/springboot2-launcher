@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>字节流美化</title>
+    <meta charset="utf8" />
+    <!-- import Vue.js -->
+    <script src="/assets/vue2.5.16/vue.min.js"></script>
+    <!-- import stylesheet -->
+    <link href="/assets/theme-chalk/index.css" rel="stylesheet">
+    <!-- import ElementUI -->
+    <script src="/assets/element-ui@2.8.2/lib/index.js"></script>
+    <!-- import form-create -->
+    <script src="/assets/form-create.min.js"></script>
+    
+    <script src="/assets/axios.min.js"></script>
+</head>
+  <body>
+     <div id="app">
+        <div id="form-create"></div>
+    </div>
+     <div>
+       <pre><code id="resp"></code></pre>
+     </div>
+
+    <script>
+        //表单插入的节点
+        const root = document.getElementById('form-create')
+        //$f为表单api
+        const $f = window.formCreate.create(
+            //表单生成规则
+            [
+            
+                {
+                    type:"input",
+                    title:"字节流Base64",
+                    field:"base64",
+                    value:"rXsBAAAGIGl1ABwAAAABVFQsRHd2NDVfMEEwQTMsONVlazbIARYEWIw9BFiMPQAAr8LFZa17AQAABiBpdYAcAAAAAVRULER3djQ1XzBBMEE0LDjVZWs2yAEWBFiMPgRYjD4AANFbxWWtewEAAAYgaXYAHAAAAAFUVCxEd3Y0NV8wQTBBNSw41WVrNsgBDARYjD8EWIw/AABoJsVlrXsBAAAGIGl2gBwAAAABVFQsRHd2NDVfMEEwQTYsONVlazbIAQwEWIxABFiMQAAAuxDFZa17AQAABiBpdwAcAAAAAVRULER3djQ1XzBBMEE3LDjVZWs2yAEMBFiMQQRYjEIAAMFUxWWtewEAAAYgaXeAHAAAAAFUVCxEd3Y0NV8wQTBBOCw41WVrNsgBDARYjEIEWIxDAABsFMVlrXsBAAAGIGl4ABwAAAABVFQsRHd2NDVfMEEwQTksONVlazbIAQwEWIxDBFiMRAAAv/3FZa17AQAABiBpeIAcAAAAAVRULER3djQ1XzBBMEFBLDjVZWs2yAEMBFiMRARYjEUAAFv6xWWtewEAAAYgaXkAHAAAAAFUVCxEd3Y0NV8wQTBBQiw41WVrNsgBDARYjEUEWIxGAAB96MVlrXsBAAAGIGl5gBwAAAABVFQsRHd2NDVfMEEwQUMsONVlazbIAQwEWIxGBFiMRwAA0LvFZa17AQAABiBpegAcAAAAAVRULER3djQ1XzBBMEFELDjVZWs2yAEMBFiMRwRYjEgAAJhtxWWtewEAAAYgaXyAHAAAAAFUVCxEd3Y0NV8wQTBCMiw41WVrNsgBAgRYjEwEWIxNAACICcVlrXsBAAAGIGl9ABwAAAABVFQsRHd2NDVfMEEwQjMsONVlazbIAQIEWIxNBFiMTgAAxX3FZa17AQAABiBpfYAcAAAAAVRULER3djQ1XzBBMEI0LDjVZWs2yAECBFiMTgRYjE8AANWExWWtewEAAAYgaX4AHAAAAAFUVCxEd3Y0NV8wQTBCNSw41WVrNsgBAgRYjE8EWIxQAABjm8VlrXsBAAAGIGltABwAAAABVFQsRHd2NDVfMEEwNTMsONVlazbIAWYEWIvtBFiMUAAAuu7FZa17AQAABiBpfoAcAAAAAVRULER3djQ1XzBBMEI2LDjVZWs2yAECBFiMUARYjFEAAMC+xWU=",
+                    col:{
+                        span:12,
+                    },
+                    props: {
+                        type: "text",
+                    },
+                    validate:[
+                        { required: true, message: '请输入字节流Base64', trigger: 'blur' },
+                    ],
+                },
+            ],
+            //组件参数配置
+            {
+                el: root,
+                //显示表单重置按钮
+                resetBtn: true,
+                //表单提交事件
+                onSubmit: function (formData) {
+                    //按钮进入提交状态
+                    //fApi.btn.loading()
+                    // const stream = JSON.stringify({
+                    //     name: 'John Doe',
+                    //     email: 'johndoe@example.com'
+                    //     });
+                    const stream = JSON.stringify(formData)
+                    const config = {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    };
+                    axios.post('/api/data/lookup', stream, config)
+                        .then(response => {
+                            const resp = document.getElementById('resp')
+                            var text = response.data
+                            //text.replace("\r\n", "<br/>");
+                            resp.innerText = text;
+                            console.log(response.data);
+                        })
+                        .catch(error => {
+                            const resp = document.getElementById('resp')
+                            resp.innerText = JSON.stringify(error.response.data, null, 2)
+                            console.error(error);
+                        });
+                    }
+            })
+    </script>
+  </body>
+</html>

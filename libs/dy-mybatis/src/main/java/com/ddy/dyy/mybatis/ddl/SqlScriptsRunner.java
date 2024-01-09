@@ -30,7 +30,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SqlScriptsRunner {
 
-    @Autowired
+    @Autowired(required = false)
     private ISqlScripts sqlScripts;
 
     @Autowired(required = false)
@@ -47,44 +47,45 @@ public class SqlScriptsRunner {
     public void run() {
 
         log.warn("数据库初始化开始...");
-        try {
-            Connection connection = dataSource.getConnection();
-            String connectionUrl = connection.getMetaData().getURL();
-            String dbName = getDbNameFromUrl(connectionUrl);
-            String tableName = "db_version";
-            SqlRunner sqlRunner = new SqlRunner(connection);
-            ScriptRunner scriptRunner = new ScriptRunner(connection);
-            scriptRunner.setAutoCommit(true);
-            scriptRunner.setStopOnError(true);
+        if(sqlScripts != null && dataSource != null){
+            try {
+                Connection connection = dataSource.getConnection();
+                String connectionUrl = connection.getMetaData().getURL();
+                String dbName = getDbNameFromUrl(connectionUrl);
+                String tableName = "db_version";
+                SqlRunner sqlRunner = new SqlRunner(connection);
+                ScriptRunner scriptRunner = new ScriptRunner(connection);
+                scriptRunner.setAutoCommit(true);
+                scriptRunner.setStopOnError(true);
 
-            //1、sql_version表创建
-            Map<String, Object> r1 = sqlRunner.selectOne(getExistTableSql(dbName, tableName));
-            if (r1 == null || "0".equals(String.valueOf(r1.get("R_COUNT")))) {
-                scriptRunner.runScript(new StringReader(getCreateTableSql(tableName)));
-            }
-
-            //2、挨个执行sql脚本
-            List<String> scripts = sqlScripts.getSqlScripts();
-            for (int i = 0; i < scripts.size(); i++) {
-                String script = scripts.get(i);
-                String md5 = DigestUtils.md5Hex(script);
-                List<Map<String, Object>> r2 = sqlRunner.selectAll(getCheckRepeatSql(tableName, md5, "sql"));
-                if (r2 == null || r2.size() == 0) {
-                    // 执行脚本
-                    log.warn("数据库初始化，执行：{}", script);
-                    runScript(scriptRunner, script);
-                    // 更新版本
-                    String version = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-                    String insertSql = getInsertSql(tableName, md5, "sql", version);
-                    sqlRunner.insert(insertSql, script);
+                //1、sql_version表创建
+                Map<String, Object> r1 = sqlRunner.selectOne(getExistTableSql(dbName, tableName));
+                if (r1 == null || "0".equals(String.valueOf(r1.get("R_COUNT")))) {
+                    scriptRunner.runScript(new StringReader(getCreateTableSql(tableName)));
                 }
+
+                //2、挨个执行sql脚本
+                List<String> scripts =  sqlScripts.getSqlScripts();
+                for (int i = 0; i < scripts.size(); i++) {
+                    String script = scripts.get(i);
+                    String md5 = DigestUtils.md5Hex(script);
+                    List<Map<String, Object>> r2 = sqlRunner.selectAll(getCheckRepeatSql(tableName, md5, "sql"));
+                    if (r2 == null || r2.size() == 0) {
+                        // 执行脚本
+                        log.warn("数据库初始化，执行：{}", script);
+                        runScript(scriptRunner, script);
+                        // 更新版本
+                        String version = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                        String insertSql = getInsertSql(tableName, md5, "sql", version);
+                        sqlRunner.insert(insertSql, script);
+                    }
+                }
+            } catch (Exception e) {
+                log.error("数据库初始化错误", e);
+                throw new RuntimeException(e);
             }
-        } catch (Exception e) {
-            log.error("数据库初始化错误", e);
         }
-
         log.warn("数据库初始化结束...");
-
     }
 
     private static void runScript(ScriptRunner scriptRunner, String script) throws IOException, SQLException {

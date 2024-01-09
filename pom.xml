@@ -19,7 +19,8 @@
 	
 	 <modules>
          <module>demo</module>
-         <module>app</module>
+         <module>demo-with-mybatis</module>
+         <module>demo-with-admin</module>
          <module>libs</module>
     </modules>
 	
