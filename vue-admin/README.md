@@ -42,6 +42,27 @@ npm run build:stage
 npm run build:prod
 ```
 
+## 修改配置
+
+```
+1、build:prod的输出目录
+修改：vue.config.js
+- outputDir: 'dist',
+- outputDir: '../demo-with-admin/src/main/resources/static',
+- outputDir: '../demo-with-usercenter/src/main/resources/static',
+
+2、请求公共参数
+修改：request.js
+
+3、登录相关接口
+修改：login.js
+
+4、菜单接口
+修改：menu.js
+
+```
+
+
 
 聊天页面：https://learnku.com/articles/65044
 http://wiki.linyiyuan.top/#/./docs/Lemon/%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D

@@ -1,0 +1,1 @@
+static目录是vue-admin的build输出目录，即dist，每次build之前都会清空static，只能在vue-admin/public中编辑

@@ -1,0 +1,26 @@
+
+<dependency>
+    <groupId>com.ddy.dyy</groupId>
+    <artifactId>dy-web</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/../jars/dy-web-1.0.0-SNAPSHOT.jar</systemPath>
+</dependency>
+
+
+<dependency>
+    <groupId>com.ddy.dyy</groupId>
+    <artifactId>dy-mybatis</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/../jars/dy-mybatis-1.0.0-SNAPSHOT.jar</systemPath>
+</dependency>
+
+
+<dependency>
+    <groupId>com.ddy.dyy</groupId>
+    <artifactId>user-center</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/../jars/user-center-1.0.0-SNAPSHOT.jar</systemPath>
+</dependency>

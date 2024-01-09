@@ -17,10 +17,11 @@ service.interceptors.request.use(config => {
     // 是否需要设置 token
     const isToken = false //(config.headers || {}).isToken === false
     var token = getToken()
-    console.log('token2 = ' + token)
     if (token && !isToken) {
         config.headers['Authorization'] = 'Bearer ' + getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+        config.headers['x-danger-token'] = 'Bearer ' + getToken()
     }
+    config.headers['x-app-id'] = '1'
     // get请求映射params参数
     if (config.method === 'get' && config.params) {
         let url = config.url + '?';
@@ -54,7 +55,8 @@ service.interceptors.response.use(res => {
         // 未设置状态码则默认成功状态
         const code = res.data.code || 200;
         // 获取错误信息
-        const msg = errorCode[code] || res.data.msg || errorCode['default']
+        const msg = res.data.message || errorCode[code] ||  errorCode['default']
+        //console.log("接口返回: " + JSON.stringify(res.data))
         if (code === 401) {
             MessageBox.confirm('登录状态已过期，您可以继续留在该页面，或者重新登录', '系统提示', {
                 confirmButtonText: '重新登录',
@@ -81,15 +83,95 @@ service.interceptors.response.use(res => {
         }
     },
     error => {
-        console.dir('err' + error)
-        let { message } = error;
-        if (message == "Network Error") {
-            message = "后端接口连接异常";
-        } else if (message.includes("timeout")) {
-            message = "系统接口请求超时";
-        } else if (message.includes("Request failed with status code")) {
-            message = "系统接口" + message.substr(message.length - 3) + "异常";
+        let message = error.response.data.message;
+        if(!message){
+            message = errorCode[error.response.status]
         }
+        // console.log('err: ' + JSON.stringify(error.response))
+        /*
+        业务异常：
+        error.response = {
+            "data": {
+                "code": 406,
+                "message": "账号未注册"
+            },
+            "status": 406,
+            "statusText": "",
+            "headers": {
+                "content-type": "application/json;charset=UTF-8"
+            },
+            "config": {
+                "url": "/admin/auth/login_pwd",
+                "method": "post",
+                "data": "{\"username\":\"13333333333\",\"password\":\"123456\",\"code\":\"pif5\",\"uuid\":\"1111\"}",
+                "headers": {
+                    "Accept": "application/json, text/plain",
+                    "Content-Type": "application/json;charset=utf-8",
+                    "x-app-id": "1"
+                },
+                "baseURL": "http://localhost:3333/",
+                "transformRequest": [
+                    null
+                ],
+                "transformResponse": [
+                    null
+                ],
+                "timeout": 10000,
+                "xsrfCookieName": "XSRF-TOKEN",
+                "xsrfHeaderName": "X-XSRF-TOKEN",
+                "maxContentLength": -1,
+                "maxBodyLength": -1
+            },
+            "request": {}
+        }
+
+
+        404异常：
+        {
+            "data": {
+                "timestamp": "2024-01-09 20:50:22",
+                "status": 404,
+                "error": "Not Found",
+                "path": "/admin/auth/login_pwdd"
+            },
+            "status": 404,
+            "statusText": "",
+            "headers": {
+                "content-type": "application/json;charset=UTF-8"
+            },
+            "config": {
+                "url": "/admin/auth/login_pwdd",
+                "method": "post",
+                "data": "{\"username\":\"13333333333\",\"password\":\"123456\",\"code\":\"pif5\",\"uuid\":\"1111\"}",
+                "headers": {
+                    "Accept": "application/json, text/plain",
+                    "Content-Type": "application/json;charset=utf-8",
+                    "x-app-id": "1"
+                },
+                "baseURL": "http://localhost:3333/",
+                "transformRequest": [
+                    null
+                ],
+                "transformResponse": [
+                    null
+                ],
+                "timeout": 10000,
+                "xsrfCookieName": "XSRF-TOKEN",
+                "xsrfHeaderName": "X-XSRF-TOKEN",
+                "maxContentLength": -1,
+                "maxBodyLength": -1
+            },
+            "request": {}
+        }
+
+        */
+        // if (message == "Network Error") {
+        //     message = "后端接口连接异常";
+        // } else if (message.includes("timeout")) {
+        //     message = "系统接口请求超时";
+        // } else if (message.includes("Request failed with status code")) {
+        //     message = "系统接口" + message.substr(message.length - 3) + "异常";
+        // }
         Message({
             message: message,
             type: 'error',
