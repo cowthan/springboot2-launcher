@@ -3,7 +3,7 @@ package com.ddy.dyy.mybatis.mapper;
 import java.util.List;
 import java.util.Map;
 
-import com.ddy.dyy.mybatis.models.AssocArray;
+import com.ddy.dyy.web.models.biz.AssocArray;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

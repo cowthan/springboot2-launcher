@@ -1,7 +1,10 @@
 package com.ddy.dyy.web.lang;
 
+import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -107,5 +110,44 @@ public class JsonUtils {
         }
     }
 
+    /**
+     * parseToMap
+     *
+     * @param obj        obj
+     * @param ignoreNull .
+     * @return result
+     */
+    public static Map<String, Object> parseToMap(Object obj, boolean ignoreNull) {
+        Map<String, Object> map = new HashMap<>();
+        if (obj == null) {
+            return null;
+        }
+        Field[] fields = obj.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            String fieldName = field.getName();
+            try {
+                Object val = field.get(obj);
+                if (val != null || !ignoreNull) {
+                    map.put(fieldName, field.get(obj));
+                }
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return map;
+    }
 
+    /**
+     * @param json .
+     * @return .
+     */
+    public static Map<String, Object> toMap(String json) {
+        try {
+            return objectMapper.readValue(json, new TypeReference<Map<String, Object>>() {
+            });
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

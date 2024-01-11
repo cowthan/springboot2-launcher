@@ -2,7 +2,7 @@ package com.ddy.dyy.mybatis;
 
 import java.util.List;
 
-import com.ddy.dyy.mybatis.models.AssocArray;
+import com.ddy.dyy.web.models.biz.AssocArray;
 
 
 public class DbSupport {

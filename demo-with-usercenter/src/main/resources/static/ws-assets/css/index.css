@@ -1,0 +1,400 @@
+.case_banner{ height:460px; overflow:hidden; margin-top:90px;}
+.case_banner .con{ width:1000px; margin:0 auto;}
+.case_banner .con ul{ background:#2ab2f1; color:#fff; display:inline-block; padding:20px; margin-top:164px; font-size:18px;}
+.case_banner .con ul.big{ padding:40px 35px; }
+.case_banner .con ul.long{ padding:20px 105px 20px 20px; }
+.case_banner .con ul h1{ font-size:32px; line-height:40px; margin-bottom:10px;}
+/*妗堜緥*/
+.case_list .con .pic img{ width:100%;}
+.case_list.f1{ background:#f1f3f4; width:100%;}
+.case_list.f1 .con{ width:1270px; margin:0 auto;}
+.case_list.f1 .con .pic{ width:770px; float:left;}
+.case_list .con ul{font-size:14px; line-height:28px; color:#666;}
+.case_list.f1 .con ul{ width:490px; float:left;  margin-top:150px;}
+.case_list .con ul h1{ color:#2ab2f1; font-size:28px; line-height:30px; margin-bottom:5px;}
+.case_list .con ul a.bt{ width:108px; line-height:32px; display:block; background:#2ab2f1; font-size:14px; text-align:center; color:#fff;  -webkit-border-radius:2px; border-radius:2px; margin-top:10px; transition:all 1s ease;}
+.case_list .con ul a.bt:hover{ background:#0096db;}
+
+.case_list.f2 .con{ width:1055px; margin:0 auto;}
+.case_list.f2 .con .pic{ width:500px; float:right;}
+.case_list.f2 .con ul{ width:490px; float:left; margin-top:140px;}
+
+.case_list.f3{ background:#edf5f8; width:100%;}
+.case_list.f3 .con{ width:1125px; margin:0 auto;}
+.case_list.f3 .con .pic{ width:500px; float:left; margin-top:85px;}
+.case_list.f3 .con ul{ width:490px; float:right; margin-top:150px;}
+
+.case_list.f4{ background:#f8f8f8; width:100%;}
+.case_list.f4 .con{ width:1155px; margin:0 auto;}
+.case_list.f4 .con .pic{ width:590px; float:right; margin-top:75px;}
+.case_list.f4 .con ul{ width:490px; float:left; margin-top:150px;}
+
+.case_banner_con{ height:320px; overflow:hidden; margin-top:90px;}
+.case_banner_con_hui{ background:#f1f3f4;height:320px; margin-top:90px; }
+.case_banner_con_hui .con{  width:1000px; margin:0 auto;}
+.case_banner_con_hui .con .pic{ float:left;}
+.case_banner_con_hui .con h1{ font-size:32px; line-height:40px; color:#2ab2f1; float:right; margin-top:140px; margin-right:50px;}
+
+.example{ width:1000px; margin:0 auto; padding-bottom:140px;}
+.example dl{ width:220px; height:160px; float:left; text-align:center;  font-size:14px; margin:50px 40px 0 0;}
+.example dl.last{ margin:50px 0 0 0;}
+.example dl dt{ width:100%; height:118px; border:1px solid #e7e7e7; display:table-cell; vertical-align:middle;}
+.example dl dd{ margin-top:10px; }
+
+/*涓嬭浇*/
+.download{ width:1000px; margin:0 auto; margin-top:60px;}
+.download.last{ padding-bottom:150px;}
+.download .top{ width:100%; position:relative; text-align:center;}
+.download .top .line{ width:100%; height:1px; background:#ededed; position:absolute; left:0; top:10px;}
+.download .top h1{ font-size:18px; background:#fff; display:inline-block; padding:0 15px; position:relative; z-index:10;}
+.download .con{  text-align:center;}
+.download .con dl{ width:25%; color:#444; margin:50px 0 0 0; float:left;}
+.download .con dl h1{ font-size:14px; margin:15px 0; }
+.download .con dl span{ margin:0 10px;}
+.download .con dl a.bt{ width:70px; line-height:26px; display:inline-block; background:#2ab2f1; text-align:center; color:#fff;  -webkit-border-radius:2px; border-radius:2px; margin-top:10px; transition:all 1s ease;}
+.download .con dl a.bt:hover{ background:#0096db;}
+
+
+.shop_banner{ height:610px;  overflow:hidden; margin-top:90px;}
+.shop_banner .con{ width:1000px; margin:0 auto;}
+.shop_banner .con .txt{ width:535px; margin-left:17px; margin-top:290px;}
+.shop_banner .con ul{ background:#2ab2f1; color:#fff;  padding:25px;  font-size:20px; line-height:30px;}
+.shop_banner .con ul h1{ font-size:32px; line-height:40px; margin-bottom:10px; }
+
+
+.shop_tab{ width:100%; text-align:center; padding:80px 0;}
+.shop_tab dl{ display:inline-block; font-size:14px; margin:0 85px;}
+.shop_tab dl dd{ margin-bottom:5px;}
+
+.shop{ clear:both; width:100%;}
+
+.shop .con{ width:1000px; margin:0 auto;}
+.shop ul{ color:#797979; font-size:14px; line-height:28px;}
+.shop ul h1{ color:#2ab2f1; font-size:28px; line-height:30px; margin-bottom:5px;}
+.shop ul a.bt{ width:108px; line-height:32px; display:block; background:#2ab2f1; font-size:14px; text-align:center; color:#fff;  -webkit-border-radius:2px; border-radius:2px; margin-top:10px; transition:all 1s ease;}
+.shop ul a.bt:hover{ background:#0096db;}
+.shop ul a.bt i{ background:url(../images/car.png) no-repeat; width:18px; height:18px; display:inline-block; margin-right:5px; vertical-align:-3px;}
+.shop .pic{ text-align:center;}
+
+.shop.f1{ background:#f8f8f8;}
+.shop.f1 .con{ padding:125px 0;}
+.shop.f1 .pic{ float:left;}
+.shop.f1 .pic.lf{ margin-left:48px;}
+.shop.f1 ul{ width:400px; margin:25px 20px 0 0;  float:right;}
+
+.shop.f2 .con{ padding:140px 0 110px 0;}
+.shop.f2 .pic{ float:right;}
+.shop.f2 ul{ width:445px; margin:25px 0 0 30px; float:left;}
+
+.shop.f4 .con{ padding:75px 0;}
+.shop.f4 .pic{ float:right;}
+.shop.f4 ul{ width:350px; margin:130px 0 0 30px;  float:left;}
+
+.meeting_banner{ height:320px; overflow:hidden; margin-top:90px;}
+.meeting{ width:418px; background:#fff; border:1px solid #e8e8e8; margin:0 auto; margin-top:-186px; margin-bottom:195px;}
+.meeting h1{ font-size:20px; line-height:30px; text-align:center; margin-top:30px;}
+.meeting ul{ width:320px; margin:0 auto; margin-top:30px; color:#424242;}
+.meeting ul p{ margin-top:10px;}
+.meeting ul .txt{ box-sizing:content-box;width:298px; padding:10px; height:21px; line-height:21px; border:1px solid #dadada; font-size:12px; -webkit-border-radius:2px; border-radius:2px;}
+.meeting ul .btn{ padding:0px; width:320px; line-height:44px; display:block; background:#2ab2f1; font-size:16px; text-align:center; color:#fff;  -webkit-border-radius:2px; border-radius:2px; margin-top:20px; transition:all 1s ease; cursor:pointer;}
+.meeting ul .btn:hover{ background:#0096db;}
+.meeting dl.erwei{ text-align:center; overflow:hidden; font-size:14px; margin:30px auto;}
+.meeting dl.erwei dt{ line-height:40px;}
+.meeting .bottom{ width:100%; text-align:center; padding-bottom:35px;}
+.meeting .bottom dl{ display:inline-block; margin:0 15px; line-height:35px; }
+
+.casecon{ width:790px; margin:50px auto 115px auto;}
+.casecon .top p{ font-size:14px; line-height:32px;}
+.casecon .top p strong{ font-size:20px; color:#2ab2f1; font-weight:normal; margin-top:25px; display:block;}
+.casecon .bottom{ width:100%; text-align:center; margin-top:70px;}
+.casecon .bottom a{ background:#2ab2f1; display:inline-block; color:#fff; width:180px; line-height:40px; -webkit-border-radius:2px; border-radius:2px; font-size:14px;}
+.casecon .bottom a:hover{ background:#0492d3;}
+
+.map{ height:670px; margin-top:90px;}
+.contact .con{ width:1000px; margin:0 auto; padding-bottom:100px;}
+.contact .con dl{ width:340px; float:left; font-size:14px; line-height:28px; margin:80px 60px;}
+.contact .con dl h1{ font-size:20px; margin-top:15px;}
+
+
+.product_banner{ background:url(../images/product_banner.jpg) no-repeat center #f3f4f6; background-size:cover; height:460px; overflow:hidden; margin-top:90px; }
+.product_banner .con{ width:1000px; margin:0 auto;}
+.product_banner .con p{ float:right; width:425px; font-size:16px; line-height:30px; margin-top:120px;}
+.product_banner .con img{ display:none;}
+
+.product{ clear:both; width:100%;}
+
+.product .con{ width:1000px; margin:0 auto; padding:60px 0;}
+.product ul{ width:465px;  color:#797979; font-size:14px; line-height:28px;}
+.product ul li{ margin-top:30px;}
+.product ul h1{ color:#2ab2f1; font-size:28px; line-height:30px; margin-bottom:5px;}
+.product ul a.bt{ width:108px; line-height:32px; display:block; background:#2ab2f1; font-size:14px; text-align:center; color:#fff;  -webkit-border-radius:2px; border-radius:2px; transition:all 1s ease;}
+.product ul a.bt:hover{ background:#0096db;}
+.product ul a.bt i{ background:url(../images/car.png) no-repeat; width:18px; height:18px; display:inline-block; margin-right:5px; vertical-align:-3px;}
+.product .pic{ width:501px; text-align:center;}
+
+.product.f1{ background:#f8f8f8;}
+.product.f1 .pic{ float:left;}
+.product.f1 ul{ float:right;}
+.product.f2 .pic{ float:right;}
+.product.f2 ul{ float:left;}
+.product .con:nth-last-child(1){ padding:60px 0 0 0;}
+
+@media screen and (max-width:1300px){
+    .case_list.f1 .con,.case_list.f2 .con,.case_list.f3 .con,.case_list.f4 .con{ width:94%;}
+    .case_list.f1 .con .pic,.case_list.f2 .con .pic,.case_list.f3 .con .pic,.case_list.f4 .con .pic{ width:60%;}
+    .case_list.f1 .con ul,.case_list.f2 .con ul,.case_list.f3 .con ul,.case_list.f4 .con ul{ width:38%; margin-top:100px;}
+    .shop_banner .con{ width:100%;}
+    .shop_banner{ height:560px;}
+    .shop_banner .con .txt{ margin-top:240px;}
+    .map{ height:600px; }
+}
+
+@media screen and (max-width:1030px){
+    .case_banner{ height:400px;}
+    .case_banner .con,.example,.download{ width:94%;}
+    .example dl{ width:20%; margin:50px 2.5% 0 2.5%;}
+    .example dl.last{ margin:50px 2.5% 0 2.5%;}
+    .shop_banner{ height:500px;}
+    .shop .con{ width:94%;}
+    .shop.f1 .pic{  width:51.6%;}
+    .shop.f1 ul{ width:40%;}
+    .shop.f2 .pic{  width:45.2%;}
+    .shop.f2 ul{ width:44.5%;}
+
+    .shop.f1 .pic.lf{ margin-left:0px;}
+    .shop.f4 .pic{ width:60%;}
+    .shop.f4 ul{ width:35%; margin:130px 0 0 30px;}
+    .meeting_banner{ height:280px;}
+    .case_banner_con{ height:280px; }
+
+    .casecon{ width:94%;  margin:30px auto 50px auto;}
+    .casecon .bottom{ margin-top:30px;}
+    .map{ height:500px;}
+    .contact .con{ width:94%;}
+    .contact .con dl{ width:34%; margin:80px 6%;}
+    .product_banner .con{ width:94%;}
+
+    .product .con{ width:94%;}
+    .product ul{ width:46.5%;}
+    .product .pic{ width:50%;}
+
+    .case_banner_con_hui{ height:auto;}
+    .case_banner_con_hui .con{  width:94%;}
+    .case_banner_con_hui .con .pic{ width:66%;}
+    .case_banner_con_hui .con h1{ margin-top:100px;}
+}
+
+@media screen and (max-width:820px){
+    .case_banner_con_hui .con .pic{ width:60%;}
+}
+
+@media screen and (max-width:768px){
+    .case_banner{ height:360px;  margin-top:50px;}
+    .case_banner .con ul{ margin:100px auto;}
+    .case_list.f1 .con,.case_list.f2 .con,.case_list.f3 .con,.case_list.f4 .con{ padding-bottom:30px;}
+    .case_list.f1 .con .pic,.case_list.f2 .con .pic,.case_list.f3 .con .pic,.case_list.f4 .con .pic{ width:100%; float:none;}
+    .case_list.f1 .con ul,.case_list.f2 .con ul,.case_list.f3 .con ul,.case_list.f4 .con ul{ width:100%; float:none; margin-top:20px;}
+    .case_list .con ul h1{  font-size:20px; line-height:30px;}
+
+    .example dl dt{ width:100%; height:98px;}
+    .example dl{ width:30%; margin:30px 1.5% 0 1.5%;}
+    .example dl.last{ margin:30px 1.5% 0 1.5%;}
+    .download{ margin-top:30px;}
+    .download .con dl{ float:left; width:45%;   margin:30px 2.5% 0 2.5%;}
+    .download.last{ padding-bottom:50px;}
+    .shop_banner{ height:420px; margin-top:50px;}
+    .shop_banner .con .txt{ margin-top:140px;}
+    .shop_tab{ padding:30px 0 10px 0;}
+    .shop_tab dl{ width:30%; margin:0 1.5% 20px 1.5%; float:left;}
+    .shop ul h1{ font-size:20px; line-height:30px;}
+    .shop.f1 .con{ padding:50px 0;}
+    .shop.f1 .pic{ float:none; width:100%; margin:0 }
+    .shop.f1 ul{ width:100%; float:none; margin:20px auto;}
+
+    .shop.f2 .con{ padding:50px 0;}
+    .shop.f2 .pic{ float:none; width:100%; margin:0 }
+    .shop.f2 ul{ width:100%; float:none; margin:20px auto;}
+
+    .shop.f3 .con{ padding:50px 0;}
+    .shop.f3 .pic{ float:none; width:100%; margin:0 }
+    .shop.f3 ul{ width:100%; float:none;}
+
+    .shop.f4 .con{ padding:50px 0;}
+    .shop.f4 .pic{ float:none; width:100%; margin:0}
+    .shop.f4 ul{ width:100%; margin:20px auto;  float:none;}
+
+    .meeting_banner{ height:260px; margin-top:50px;}
+    .case_banner_con{ height:200px; margin-top:50px; }
+
+    .case_banner_con_hui{ margin-top:50px; }
+    .case_banner_con_hui .con{  width:94%;}
+    .case_banner_con_hui .con .pic{ width:100%; text-align:center; float:none;}
+    .case_banner_con_hui .con h1{ margin:30px 0; float:none; width:100%; text-align:center; font-size:24px; line-height:30px;}
+
+    .map{ height:400px; margin-top:50px;}
+    .contact .con dl h1{ font-size:18px;}
+    .product_banner{ margin-top:50px; background:#f3f4f6; height:auto; padding-bottom:20px;}
+    .product_banner .con p{ float:none; width:94%; margin:20px auto; }
+    .product_banner .con img{ display:block;}
+    .product .con:nth-last-child(1){ padding:60px 0;}
+    .product ul h1{ font-size:20px; line-height:30px;}
+    .product.f1 .pic{ float:none; width:100%;}
+    .product.f1 ul{ float:none; width:100%;}
+    .product.f2 .pic{ float:none; width:100%;}
+    .product.f2 ul{ float:none; width:100%;}
+    .product ul li{ margin-top:10px;}
+
+}
+
+
+@media screen and (max-width:470px){
+    .case_banner{ height:300px;}
+    .case_banner .con ul{  font-size:16px; margin:80px auto;}
+    .case_banner .con ul h1{ font-size:22px; line-height:30px;}
+    .case_banner .con ul.big{ width:80%; padding:30px 10%; margin:100px auto; text-align:center;}
+    .case_banner .con ul.long{  width:80%; padding:30px 10%; margin:100px auto; text-align:center; }
+    .example dl{ width:45%; margin:30px 2.5% 0 2.5%; height:130px;}
+    .example dl.last{ margin:30px 2.5% 0 2.5%;}
+    .example dl dt{ width:100%; height:88px;}
+    .shop_banner{ height:380px;}
+    .shop_banner .con .txt{  width:300px;  margin:80px auto; }
+    .shop_banner .con ul{ font-size:16px; line-height:30px;}
+    .shop_banner .con ul h1{ font-size:22px; line-height:30px;}
+    .shop_banner .con .txt p{ font-size:16px; line-height:28px;}
+    .meeting_banner{ height:200px;}
+    .meeting{ width:100%; margin:20px auto; border:0; }
+    .case_banner_con{ height:150px; }
+    .contact .con{ padding-bottom:50px;}
+    .contact .con dl{ width:100%; float:none; margin:30px auto;}
+    .contact .con dl dd{ text-align:center; }
+    .contact .con dl dd img{ width:100%;}
+}
+
+@media screen and (max-width:370px){
+    .case_banner{ height:240px;}
+    .case_banner .con ul{  font-size:14px; margin:70px auto; }
+    .case_banner .con ul h1{ font-size:18px; line-height:25px; margin-bottom:5px;}
+    .download .con dl h1{ height:40px;}
+    .shop_banner{ height:320px;}
+    .shop_banner .con .txt{  width:260px;   }
+    .shop_banner .con ul{   font-size:14px; font-size:18px; line-height:25px;}
+    .shop_banner .con ul h1{ font-size:18px; line-height:25px; margin-bottom:5px;}
+    .meeting ul{ width:280px;}
+    .meeting ul .txt{ width:258px; }
+    .meeting ul .btn{ width:280px;}
+}
+
+
+
+
+.sdk_banner{ width:100%; background:#2ab2f1; text-align:center; margin-top:90px; height:210px; color:#fff;}
+.sdk_banner h1{ font-size:32px; line-height:45px; margin:65px auto 15px auto;}
+.sdk_banner p{ font-size:18px;}
+.sdk_banner ul{ width:94%; margin:0 auto; overflow:hidden;}
+
+
+.main{ width:1000px; margin:40px auto 190px auto; overflow:hidden; }
+
+.left_box{ width:258px; border:1px solid #e7e7e7; float:left; margin-bottom:20px;}
+#J_navlist{ width:100%; background:#fff;  }
+#J_navlist .list-item.none{display:none;}
+#J_navlist li{ border-bottom:1px solid #e7e7e7; display:block; padding:0px; position:relative;min-height:48px;_height:48px;z-index:10;zoom:1; margin:0 auto; clear:both;}
+#J_navlist li:nth-last-child(1){ border:0;}
+
+#J_navlist li h4{ font-size:14px; line-height:48px; font-weight:normal; cursor:pointer; clear:both; overflow:hidden;}
+#J_navlist li h4 span{ margin-left:15px; float:left; }
+#J_navlist li h4 i{cursor:pointer; background:url(../images/down.png) no-repeat; display:block; width:11px; height:8px; float:right; margin:25px 15px 0 0px;}
+#J_navlist li.selected h4 i{  background:url(../images/up.png) no-repeat;}
+#J_navlist li.selected h4{ background:#f8f8f8;}
+
+#J_navlist li .list-item{ position:relative; zoom:1; padding:10px 0 10px 38px; clear:both; background:#f8f8f8; border-top:1px solid #e7e7e7;}
+#J_navlist li dl{ line-height:30px;}
+
+.right_box{ width:695px; float:right;}
+.right_box .top h1{ font-size:26px; color:#444; line-height:28px;}
+.right_box .con{ line-height:28px; color:#444; margin-top:30px;}
+.right_box .con p{ font-size:14px;}
+
+@media screen and (max-width:1030px){
+    .main{ width:100%;}
+    .left_box{ width:35%;}
+    .right_box{ width:60%;}
+}
+
+@media screen and (max-width:768px){
+    .sdk_banner{  margin-top:50px;}
+    .sdk_banner h1{ font-size:24px; line-height:35px; margin:65px auto 15px auto;}
+    .sdk_banner p{ font-size:16px;}
+    .main{  margin:0px auto 40px auto;}
+    .left_box{ width:100%; border-left:0; border-right:0; float:none; margin:0 auto;}
+    .right_box{ width:94%; float:none; margin:0 auto; margin-top:20px;}
+}
+@media screen and (max-width:470px){
+
+    .right_box .top h1{ font-size:20px; color:#444; line-height:22px;}
+}
+@media screen and (max-width:370px){
+
+    .sdk_banner h1{ font-size:20px;}
+
+}
+
+
+/*鐧婚檰*/
+.login{ width:418px; background:#fff; border:1px solid #e8e8e8; margin:0 auto; margin-top:-186px; margin-bottom:195px; padding-bottom:75px;}
+/*.login .tab{ width:318px; border:1px solid #2ab2f1; font-size:16px; margin:0 auto; -webkit-border-radius:2px; border-radius:2px; line-height:41px; text-align:center; overflow:hidden;}*/
+/*Sam*/
+.login .tab{ box-sizing:content-box; width:318px; border:1px solid #2ab2f1; font-size:16px; margin:0 auto; -webkit-border-radius:2px; border-radius:2px; line-height:41px; text-align:center; overflow:hidden;}
+.login .tab a{ width:159px; display:block; float:left; color:#2ab2f1;}
+.login .tab a.current{ background:#2ab2f1; color:#fff;}
+.login_con{ width:320px; margin:0 auto; margin-top:10px; }
+.login_con #botton{ width:120px; height:43px;  background:#2ab2f1; text-align:center; -webkit-border-radius:2px; border-radius:2px;  cursor:pointer; color:#fff;}
+.SendVerifCode{ display: inline-block; text-align: center; line-height: 43px; margin-left: 15px; width:119px; height:43px; background:#2ab2f1; text-align:center; -webkit-border-radius:2px; border-radius:2px;  cursor:pointer; color:#fff;}
+.SendVerifCode:hover{ color:#fff;}
+
+.login .f1{ width:100%; overflow:hidden; margin:30px auto 20px auto;}
+.login .f1 h1{  font-size:20px; text-align:center;}
+.login .txt{ border:1px solid #dcdcdc; -webkit-border-radius:2px; border-radius:2px; font-size:14px;}
+.login .txt:focus{ border:1px solid #2ab2f1; box-shadow:0 0 10px 0 rgba(199,235,251,.5);}
+/*.login .txt.w1{ width:298px; height:21px; padding:10px; background:#fcfcfc;}
+.login .txt.w2{ width:160px; height:21px; padding:10px; background:#fcfcfc;}*/
+/*Sam*/
+.login .txt.w1{ box-sizing:content-box; width:298px; height:21px; padding:10px; background:#fcfcfc;}
+.login .txt.w2{ box-sizing:content-box; width:160px; height:21px; padding:10px; background:#fcfcfc;}
+.login  .wang{ font-size:14px;}
+.login .btn{ width:100%; height:43px; text-align:center; font-size:16px; color:#fff; cursor:pointer;  -webkit-border-radius:2px; border-radius:2px; -webkit-transition:0.5s ease; transition:0.5s ease; background:#2ab2f1;}
+.login .btn:hover{ background:#009fe9;}
+.login .btn:disabled{ background:#e8e8e8;}
+.login p.last{ font-size:14px;}
+.login p.last a{ color:#2ab2f1;}
+.login p.last a:hover{ text-decoration:underline;}
+.login input[type="checkbox"]{ position:absolute; top:-1000px; left:-1000px;}
+.login label input+span{ background:url(../images/check.jpg) no-repeat 0 -14px; width:14px; height:14px; display:inline-block; margin-right:5px; vertical-align:-2px;}
+.login label input:checked+span{ background-position:0 0;}
+
+.login ul.cg{ width:100%; overflow:hidden; margin:60px auto; text-align:center;}
+.login ul.cg h1{ font-size:20px; margin:20px auto;}
+.login ul.cg a{ font-size:16px; color:#2ab2f1; border:1px solid #2ab2f1; -webkit-border-radius:2px; border-radius:2px; display:inline-block; width:150px; line-height:40px;}
+.login ul.cg a:hover{ background:#2ab2f1; color:#fff;}
+
+@media screen and (max-width:470px){
+    .login{ width:100%; border:0; margin:0 auto;}
+}
+
+@media screen and (max-width:370px){
+    .login .tab{ width:298px;}
+    .login .tab a{ width:149px;}
+    .login_con{ width:300px;}
+    .login .txt.w1{ width:278px;}
+    .login .txt.w2{ width:140px;}
+}
+
+@media screen and (max-width:1000px){
+    .case_banner{  margin-top:50px;}
+    .meeting_banner{ margin-top:50px;}
+    .case_banner_con{ margin-top:50px; }
+    .product_banner{ margin-top:50px;}
+    .case_banner_con_hui{ margin-top:50px; }
+    .map{ margin-top:50px;}
+    .sdk_banner{  margin-top:50px;}
+}

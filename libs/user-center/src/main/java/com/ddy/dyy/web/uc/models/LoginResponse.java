@@ -12,5 +12,5 @@ public class LoginResponse {
     private String sid;
     private String appRole;
 
-    private MyUserVO userInfo;
+    private MyUserVo userInfo;
 }

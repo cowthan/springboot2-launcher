@@ -1,156 +1,125 @@
-[
-  {
-    "name": "说明文档",
-    "path": "/dev/sys",
-    "hidden": false,
-    "redirect": "noRedirect",
-    "component": "Layout",
-    "alwaysShow": true,
-    "meta": {
-      "title": "说明文档",
-      "icon": "log",
-      "noCache": false
-    },
-    "children": [
-      {
-        "name": "doc",
-        "path": "doc",
-        "hidden": false,
-        "component": "dev/sys/doc",
-        "meta": {
-          "title": "使用手册",
-          "icon": "dashboard",
-          "noCache": false
-        }
-      }
-    ]
-  },
-  {
-    "name": "页面构建",
-    "path": "/dev/forms",
-    "hidden": false,
-    "redirect": "noRedirect",
-    "component": "Layout",
-    "alwaysShow": true,
-    "meta": {
-      "title": "页面构建",
-      "icon": "log",
-      "noCache": false
-    },
-    "children": [
-      {
-        "name": "form_build",
-        "path": "form_build",
-        "hidden": false,
-        "component": "dev/form_build/index",
-        "meta": {
-          "title": "表单生成",
-          "icon": "log",
-          "noCache": false
-        }
-      }
-    ]
-  },
-  {
-    "name": "表单示例",
-    "path": "/dev/send",
-    "hidden": false,
-    "redirect": "noRedirect",
-    "component": "Layout",
-    "alwaysShow": true,
-    "meta": {
-      "title": "表单示例",
-      "icon": "log",
-      "noCache": false
-    },
-    "children": [
-
-      {
-        "name": "long-task.vue",
-        "path": "long-task.vue",
-        "hidden": false,
-        "component": "dev/send/long-task.vue",
-        "meta": {
-          "title": "长任务",
-          "icon": "log",
-          "noCache": false
-        }
-      }
-    ]
-  },
-  {
-    "name": "开发者工具",
-    "path": "/dev/tools",
-    "hidden": false,
-    "redirect": "noRedirect",
-    "component": "Layout",
-    "alwaysShow": true,
-    "meta": {
-      "title": "开发者工具",
-      "icon": "log",
-      "noCache": false
-    },
-    "children": [
-      {
-        "name": "bytes-lookup",
-        "path": "bytes-lookup",
-        "hidden": false,
-        "component": "dev/tools/bytes-lookup",
-        "meta": {
-          "title": "美化字节流",
-          "icon": "log",
-          "noCache": false
-        }
+{
+  "code": 200,
+  "data": [
+    {
+      "name": "说明文档",
+      "path": "/dev/sys",
+      "hidden": false,
+      "redirect": "noRedirect",
+      "component": "Layout",
+      "alwaysShow": true,
+      "meta": {
+        "title": "说明文档",
+        "icon": "log",
+        "noCache": false
       },
-      {
-        "name": "data-convert",
-        "path": "data-convert",
-        "hidden": false,
-        "component": "dev/tools/data-convert",
-        "meta": {
-          "title": "数据转换",
-          "icon": "log",
-          "noCache": false
+      "children": [
+        {
+          "name": "doc",
+          "path": "doc",
+          "hidden": false,
+          "component": "dev/sys/doc",
+          "meta": {
+            "title": "使用手册",
+            "icon": "dashboard",
+            "noCache": false
+          }
         }
-      }
-
-    ]
-  },
-  {
-    "name": "Account",
-    "path": "/data/account",
-    "hidden": false,
-    "redirect": "noRedirect",
-    "component": "Layout",
-    "alwaysShow": true,
-    "meta": {
-      "title": "账号模块",
-      "icon": "user",
-      "noCache": false
+      ]
     },
-    "children": [
-      {
-        "name": "User",
-        "path": "user",
-        "hidden": false,
-        "component": "data/user/index",
-        "meta": {
-          "title": "用户管理",
-          "icon": "user",
-          "noCache": false
-        }
+    {
+      "name": "页面构建",
+      "path": "/dev/forms",
+      "hidden": false,
+      "redirect": "noRedirect",
+      "component": "Layout",
+      "alwaysShow": true,
+      "meta": {
+        "title": "页面构建",
+        "icon": "log",
+        "noCache": false
       },
-      {
-        "name": "Session",
-        "path": "session",
-        "hidden": false,
-        "component": "data/user/session",
-        "meta": {
-          "title": "会话管理",
-          "icon": "user",
-          "noCache": false
+      "children": [
+        {
+          "name": "form_build",
+          "path": "form_build",
+          "hidden": false,
+          "component": "dev/form_build/index",
+          "meta": {
+            "title": "表单生成",
+            "icon": "log",
+            "noCache": false
+          }
         }
-      }
-    ]
-  }
-]
+      ]
+    },
+    {
+      "name": "表单示例",
+      "path": "/dev/send",
+      "hidden": false,
+      "redirect": "noRedirect",
+      "component": "Layout",
+      "alwaysShow": true,
+      "meta": {
+        "title": "表单示例",
+        "icon": "log",
+        "noCache": false
+      },
+      "children": [
+
+        {
+          "name": "long-task.vue",
+          "path": "long-task.vue",
+          "hidden": false,
+          "component": "dev/send/long-task.vue",
+          "meta": {
+            "title": "长任务",
+            "icon": "log",
+            "noCache": false
+          }
+        }
+      ]
+    },
+
+
+
+    {
+      "name": "开发者工具",
+      "path": "/dev/tools",
+      "hidden": false,
+      "redirect": "noRedirect",
+      "component": "Layout",
+      "alwaysShow": true,
+      "meta": {
+        "title": "开发者工具",
+        "icon": "log",
+        "noCache": false
+      },
+      "children": [
+        {
+          "name": "bytes-lookup",
+          "path": "bytes-lookup",
+          "hidden": false,
+          "component": "dev/tools/bytes-lookup",
+          "meta": {
+            "title": "美化字节流",
+            "icon": "log",
+            "noCache": false
+          }
+        },
+        {
+          "name": "data-convert",
+          "path": "data-convert",
+          "hidden": false,
+          "component": "dev/tools/data-convert",
+          "meta": {
+            "title": "数据转换",
+            "icon": "log",
+            "noCache": false
+          }
+        }
+
+      ]
+    }
+  ]
+}

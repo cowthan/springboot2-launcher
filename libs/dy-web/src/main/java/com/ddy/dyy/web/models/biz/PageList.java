@@ -10,9 +10,9 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class PageList {
+public class PageList<T> {
 
-    private List<?> list;
+    private List<T> list;
     private Integer pages;
     private Integer totalCount;
     private Integer pageSize;
@@ -21,7 +21,7 @@ public class PageList {
 
     }
 
-    public PageList(List<?> data, long totalCount, int pageSize) {
+    public PageList(List<T> data, long totalCount, int pageSize) {
         this.list = data;
         this.pageSize = pageSize;
         this.pages = (int) ((totalCount + pageSize - 1) / pageSize);

@@ -33,6 +33,11 @@ public class LogPrinter {
         this.log = log;
     }
 
+    public void beforeRequest(){
+        String requestId = "request_" + UUID.randomUUID().toString().replace("-", "");
+        MDC.put(REQUEST_ID, requestId);
+    }
+
     public void doPrint(HttpServletRequest request,
                         HttpServletResponse response, long start) throws IOException {
         if (!needLog(request)) {
@@ -41,8 +46,7 @@ public class LogPrinter {
         if (!(response instanceof ContentCachingResponseWrapper)) {
             response = new ContentCachingResponseWrapper(response);
         }
-        String requestId = "request_" + UUID.randomUUID().toString().replace("-", "");
-        MDC.put(REQUEST_ID, requestId);
+
         try {
             DyLoggingFilter.LoggingRequest loggingRequest = getLoggingRequest(request);
             copyBodyToResponse(response);

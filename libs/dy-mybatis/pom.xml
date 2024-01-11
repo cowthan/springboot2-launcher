@@ -12,9 +12,9 @@
     <description>dy-mybatis</description>
     <dependencies>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
+            <groupId>com.ddy.dyy</groupId>
+            <artifactId>dy-web</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>

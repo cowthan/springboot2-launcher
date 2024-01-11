@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>websocket client</title>
+    <meta name="description" content="Neat" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" user-scalable="no" />
+    <style>
+      html,
+      body {
+        min-height: 100%;
+        font-size: 12px;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      a:hover {
+        border-bottom: 1px solid rgba(222, 184, 135, 0.596);
+      }
+      body {
+        /*background-image: url('./ws-assets/images/bg.jpg');*/
+        background-color: black;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100vh;
+        flex-direction: column;
+        display: flex;
+      }
+      .main-group {
+        flex: 1;
+        overflow-y: scroll;
+        font-size: 1.3em;
+        color: white;
+        padding: 10px;
+      }
+      .msg_item {
+        margin: 5px 0;
+        font-size: 0.8em;
+      }
+      .msg_attr {
+        margin: 0 15px;
+      }
+      .msg_time {
+        color: #868686;
+      }
+      .msg_type {
+        color: #52c41a;
+      }
+      .msg_id {
+        color: #eb2f96;
+      }
+      .msg_ids {
+        color: #a59f9f;
+      }
+      .msg_payload {
+        color: #ddd;
+      }
+      .msg_collect {
+        color: #13c2c2;
+      }
+      .highlight {
+        color: #e60013;
+      }
+      .bar_bg {
+        background-color: #000087;
+        color: white;
+      }
+      .top_bar {
+        padding: 16px 12px 12px;
+      }
+      .top_bar_title {
+        display: flex;
+      }
+      .header_title {
+        align-self: end;
+        margin-left: 16px;
+      }
+      .top_bar_subtitle {
+        margin-top: 5px;
+      }
+      .bottom_bar {
+        padding: 12px 12px;
+      }
+      .search_bar {
+        margin-top: 12px;
+        display: flex;
+      }
+      .search_item {
+        display: flex;
+        width: 300px;
+        margin-right: 22px;
+        align-items: center;
+        font-size: 14px;
+      }
+      .search_item label {
+        white-space: nowrap;
+      }
+      input {
+        border-color: #1a2096;
+        border-right-width: 1px !important;
+        box-sizing: border-box;
+        margin: 0;
+        font-variant: tabular-nums;
+        list-style: none;
+        font-feature-settings: 'tnum';
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: 32px;
+        padding: 4px 11px;
+        color: rgba(0, 0, 0, 0.65);
+        font-size: 14px;
+        line-height: 1.5;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #d9d9d9;
+        border-radius: 4px;
+        transition: all 0.3s;
+      }
+      .d-none {
+        display: none;
+      }
+      button {
+        line-height: 1.499;
+        position: relative;
+        display: inline-block;
+        font-weight: 400;
+        white-space: nowrap;
+        text-align: center;
+        background-image: none;
+        border: 1px solid transparent;
+        box-shadow: 0 2px 0 rgb(0 0 0 / 2%);
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        touch-action: manipulation;
+        height: 32px;
+        padding: 0 15px;
+        font-size: 14px;
+        border-radius: 4px;
+        color: rgba(0, 0, 0, 0.65);
+        background-color: #fff;
+        border-color: #d9d9d9;
+      }
+    </style>
+    <script src="./ws-assets/js/jquery-1.11.2.min.js"></script>
+  </head>
+  <body>
+    <div class="bar_bg top_bar">
+      <div class="top_bar_title">
+        <h1 id="title1">WebSocket Client</h1>
+        <div class="header_title">
+          <span id="con-success" class="d-none">
+            <svg
+              t="1658478302385"
+              class="icon"
+              viewBox="0 0 1024 1024"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              p-id="10236"
+              width="20"
+              height="20"
+            >
+              <path
+                d="M800.3 205.1L534.8 116c-16-5.4-33.3-5.3-49.2 0.2l-264.5 92.3c-29.3 10-49 37.5-49.1 68.4l1.7 265.4c0.7 81 31.1 158.9 85.6 218.9 25 27.7 56.9 51.5 97.8 72.7l144 74.6c9 4.7 19.7 4.6 28.7-0.2L672.5 832c40.4-21.6 72.2-45.7 96.9-73.8 53.6-60.6 83-138.9 82.6-219.8l-1.7-265.6c-0.5-30.9-20.5-58.1-50-67.7z"
+                fill="#07C160"
+                p-id="10237"
+              ></path>
+              <path
+                d="M474.1 652c-7.1 0-13.8-2.8-18.9-7.8l-151-151.1c-10.4-10.4-10.4-27.4 0-37.8s27.4-10.4 37.8 0l132.1 132.2 207.7-207.7c10.4-10.4 27.4-10.4 37.8 0 10.4 10.4 10.4 27.4 0 37.8L493 644.2c-5 5-11.8 7.8-18.9 7.8z"
+                fill="#FFFFFF"
+                p-id="10238"
+              ></path>
+            </svg>
+          </span>
+          <span id="con-fail" class="d-none">
+            <svg
+              t="1658478683545"
+              class="icon"
+              viewBox="0 0 1024 1024"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              p-id="13152"
+              width="20"
+              height="20"
+            >
+              <path
+                d="M277.9 742s167.9-294.1 465.3-465.3C575.7 577.8 277.9 742 277.9 742z"
+                fill="#FFFFFF"
+                p-id="13153"
+              ></path>
+              <path
+                d="M743.1 742S575.2 447.9 277.8 276.7C445.3 577.8 743.1 742 743.1 742z"
+                fill="#FFFFFF"
+                p-id="13154"
+              ></path>
+              <path
+                d="M513.2 959.8S639.4 933 746.9 817.6C841.5 716 868.4 483.5 868.4 150.9 644 182.1 513.2 64 513.2 64h-2.3S380 182.1 155.7 150.9c0 332.7 26.9 565.6 121.5 667.1 107.5 115.3 233.7 142 233.7 142"
+                fill="#ED153F"
+                p-id="13155"
+              ></path>
+              <path
+                d="M334.7 686.9s126.5-221.6 350.5-350.5C559.1 563.2 334.7 686.9 334.7 686.9z"
+                fill="#FFFFFF"
+                p-id="13156"
+              ></path>
+              <path
+                d="M685.3 686.9S558.8 465.3 334.8 336.4c126.1 226.8 350.5 350.5 350.5 350.5z"
+                fill="#FFFFFF"
+                p-id="13157"
+              ></path>
+            </svg>
+          </span>
+          <span id="con-loading" class="d-none">
+            <svg
+              t="1658478904309"
+              class="icon"
+              viewBox="0 0 1024 1024"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              p-id="18619"
+              width="20"
+              height="20"
+            >
+              <path
+                d="M307.146667 821.333333a39.253333 39.253333 0 1 0 53.333333 14.346667 39.253333 39.253333 0 0 0-53.333333-14.346667zM496 874.666667a34.88 34.88 0 1 0 47.68 12.746666A34.826667 34.826667 0 0 0 496 874.666667zM685.12 828.586667a30.346667 30.346667 0 1 0 41.386667 11.093333 30.346667 30.346667 0 0 0-41.386667-11.093333zM824.906667 697.333333a24.106667 24.106667 0 1 0 32.906666 8.853334 24.16 24.16 0 0 0-32.906666-8.853334zM879.573333 518.666667a14.826667 14.826667 0 1 0 20.32 5.333333 14.88 14.88 0 0 0-20.32-5.333333zM168.693333 680.746667a43.2 43.2 0 1 0 59.04 16 43.253333 43.253333 0 0 0-59.04-16zM161.28 294.613333a58.026667 58.026667 0 1 0 79.306667 21.333334 58.08 58.08 0 0 0-79.306667-21.333334zM182.773333 506.986667a49.12 49.12 0 1 0-17.973333 67.093333 49.173333 49.173333 0 0 0 17.973333-67.093333zM476.586667 94.08a74.026667 74.026667 0 1 0 101.333333 27.093333 74.026667 74.026667 0 0 0-101.333333-27.093333zM294.24 151.573333a65.386667 65.386667 0 1 0 89.333333 23.946667 65.386667 65.386667 0 0 0-89.333333-23.946667zM742.72 282.186667a85.333333 85.333333 0 1 0-116.693333-31.253334 85.333333 85.333333 0 0 0 116.693333 31.253334zM920.053333 296.853333a96 96 0 1 0-35.146666 131.146667 96 96 0 0 0 35.146666-131.146667z"
+                p-id="18620"
+                fill="#1296db"
+              ></path>
+            </svg>
+          </span>
+          <span id="title2" style="vertical-align: super"></span>
+        </div>
+      </div>
+      <p class="top_bar_subtitle" id="subtitle"></p>
+      <p class="top_bar_subtitle" id="showMore" style="margin-top: 12px; cursor: pointer">
+        展开更多过滤条件 <span>﹀</span>
+      </p>
+      <div class="search_bar d-none" id="search_bar">
+        <div class="search_item">
+          <label>包含：</label>
+          <input type="input" id="filter" value="" placeholder="筛选关键词，逗号分隔，都包含则显示" />
+        </div>
+        <div class="search_item">
+          <label>不包含：</label>
+          <input
+            type="input"
+            id="filter_exclude"
+            value=""
+            placeholder="筛选关键词，逗号分隔，包含任意一个则不显示"
+          />
+        </div>
+        <div class="search_item" style="width: auto">
+          <input type="checkbox" checked id="running" value="1" style="width: auto; margin-right: 14px" />
+          <label>显示日志</label>
+        </div>
+        <div class="search_item">
+          <label>保留行数：</label>
+          <input type="input" id="rows" value="1000" placeholder="" />
+        </div>
+        <div class="search_item">
+          <label>高亮：</label>
+          <input type="input" id="highlight" value="ERROR,WARN" placeholder="逗号分隔，包含任意一个则高亮该行" />
+        </div>
+        <div id="showLess" style="align-self: center; cursor: pointer">收起 <span>︿</span></div>
+      </div>
+    </div>
+    <section class="main-group"></section>
+    <div id="chat" class="bar_bg bottom_bar search_bar">
+      <div class="search_item">
+        <input type="input" id="chat_topic" value="/chat" placeholder="接收者ID" />
+      </div>
+      <div class="search_item">
+        <input type="input" id="chat_payload" value="" placeholder="内容" />
+      </div>
+      <button type="button" id="btn_send">发送</button>
+    </div>
+    <script>
+      const address = window.location.search;
+      function getQueryString(name) {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
+        var r = address.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+      }
+
+      $('#showMore').on('click', function () {
+        $(this).addClass('d-none');
+        $('#search_bar').removeClass('d-none');
+      });
+
+      $('#showLess').on('click', function () {
+        $('#search_bar').addClass('d-none');
+        $('#showMore').removeClass('d-none');
+      });
+
+      function getUuid() {
+        if (typeof crypto === 'object') {
+          if (typeof crypto.randomUUID === 'function') {
+            return crypto.randomUUID();
+          }
+          if (typeof crypto.getRandomValues === 'function' && typeof Uint8Array === 'function') {
+            const callback = c => {
+              const num = Number(c);
+              return (num ^ (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (num / 4)))).toString(16);
+            };
+            return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, callback);
+          }
+        }
+        let timestamp = new Date().getTime();
+        let perforNow = (typeof performance !== 'undefined' && performance.now && performance.now() * 1000) || 0;
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+          let random = Math.random() * 16;
+          if (timestamp > 0) {
+            random = (timestamp + random) % 16 | 0;
+            timestamp = Math.floor(timestamp / 16);
+          } else {
+            random = (perforNow + random) % 16 | 0;
+            perforNow = Math.floor(perforNow / 16);
+          }
+          return (c === 'x' ? random : (random & 0x3) | 0x8).toString(16);
+        });
+      }
+
+      function createClientId() {
+        var clientId = getQueryString('uid');
+        if (!clientId) {
+          clientId = 'cn_log_' + getUuid();
+        }
+        return clientId;
+      }
+
+      function getFormatTime() {
+        var time = new Date();
+        var Y = time.getFullYear();
+        var M = time.getMonth();
+        M = M + 1 < 10 ? '0' + (M + 1) : M + 1; //这里月份加1的原因是因为月份是从0开始的，0-11月，加1让月份从1-12月区间。
+        var d = time.getDate();
+        d = d < 10 ? '0' + d : d;
+        var h = time.getHours();
+        h = h < 10 ? '0' + h : h;
+        var m = time.getMinutes();
+        m = m < 10 ? '0' + m : m;
+        var s = time.getSeconds();
+        s = s < 10 ? '0' + s : s;
+        return Y + '-' + M + '-' + d + ' ' + h + ':' + m + ':' + s;
+      }
+
+      var host = getQueryString('host');
+      var port = getQueryString('port');
+      $('#title1').text(host + ':' + port);
+      $('#filter').val('');
+
+      function addMessageToHtml(message, isLogJson) {
+          let itemHtml = '';
+          if (isLogJson) {
+            itemHtml = `
+                <div class="msg_item"><a>
+                  <span class="msg_attr msg_time">${message.receiveAt}</span>
+                  <span class="msg_attr msg_type">${message.topic}</span>
+                  <span class="msg_attr msg_ids">${message.serviceName} >> ${message.instanceId}</span>
+                  <span class="msg_attr msg_payload">${message.log}</span>
+                  </a>
+                </div>
+              `;
+          } else {
+            var filter = $('#filter').val();
+            var filter_exclude = $('#filter_exclude').val();
+            //alert(filter + "--" + !filter + "--" + message.search(filter));
+
+            var match = false;
+            if (!filter) {
+              match = true;
+            } else {
+              var words = filter.split(',');
+
+              match = true;
+              for (let i = 0; i < words.length; i++) {
+                if (message.search(words[i]) == -1) {
+                  match = false;
+                  break;
+                }
+              }
+            }
+
+            if (match && filter_exclude) {
+              var words = filter_exclude.split(',');
+              for (let i = 0; i < words.length; i++) {
+                if (message.search(words[i]) != -1) {
+                  match = false;
+                  break;
+                }
+              }
+            }
+
+            if (match) {
+              match = $('#running').prop('checked');
+            }
+
+            if (match) {
+              var highlight = $('#highlight').val();
+              var shouldHighlight = false;
+              if (highlight) {
+                var words = highlight.split(',');
+                for (let i = 0; i < words.length; i++) {
+                  if (message.search(words[i]) != -1) {
+                    shouldHighlight = true;
+                    break;
+                  }
+                }
+              }
+
+              message = message.replace(/\r\n/g, '<br>');
+              message = message.replace(/\n/g, '<br>');
+              if (shouldHighlight) {
+                itemHtml = `
+                            <div class="msg_item"><a>
+                              <span class="msg_attr highlight">${message}</span>
+                              </a>
+                            </div>
+                          `;
+              } else {
+                itemHtml = `
+                            <div class="msg_item"><a>
+                              <span class="msg_attr msg_payload">${message}</span>
+                              </a>
+                            </div>
+                          `;
+              }
+            }
+          }
+
+          if (itemHtml) {
+            $('.main-group').append(itemHtml);
+            if (this.scrollFlag) {
+              $('.main-group')[0].scrollTop = $('.main-group')[0].scrollHeight;
+            }
+          }
+        }
+
+      class MessageSocket {
+        scrollFlag = true;
+        connection = {
+          host: host,
+          port: port,
+          endpoint: '/ws/conn',
+          clean: true, // 保留会话
+          connectTimeout: 4000, // 超时时间
+          reconnectPeriod: 4000, // 重连时间间隔
+          // 认证信息
+          clientId: createClientId(),
+        };
+        client = {
+          connected: false,
+        };
+
+        bodyHeight = 0;
+        constructor(params) {
+          let that = this;
+          this.bodyHeight = document.body.clientHeight || 0;
+          this.connectWs();
+          setInterval(function () {
+            that.clearHistoryData();
+          }, 5000);
+          $('.main-group').on('scroll', function () {
+            if (
+              $('.main-group')[0].scrollHeight - $('.main-group')[0].scrollTop - $('.main-group')[0].clientHeight <
+              50
+            ) {
+              that.scrollFlag = true;
+            } else {
+              that.scrollFlag = false;
+            }
+          });
+        }
+        send(dst, payload) {
+          this.client.send("" + dst + "o>>o" + payload);
+        }
+        getClientId() {
+          return this.connection.clientId;
+        }
+        connectWs() {
+          const { host, port, endpoint, clientId } = this.connection;
+          const connectUrl = `ws://${host}:${port}${endpoint}?uid=${clientId}`;
+          $('#subtitle').text('');
+          try {
+            this.client = new WebSocket(connectUrl);
+          } catch (error) {
+            console.log('ws.connect error', error);
+            $('#title2').text('连接失败');
+            $('#con-fail').removeClass('d-none');
+          }
+          this.client.onopen = function() {
+            console.log('Connection succeeded!');
+            $('#title2').text('已连接');
+            $('#subtitle').text('Client ID: ' + clientId);
+            $('#con-success').removeClass('d-none');
+            $('#chat_topic').val(clientId);
+          };
+
+          this.client.onerror = function() {
+            console.log('Connection failed', error);
+            $('#title2').text('连接出错');
+            $('#con-fail').removeClass('d-none');
+          };
+          this.client.onclose = function() {
+            $('#title2').text('失去连接');
+            $('#con-fail').removeClass('d-none');
+          };
+          this.client.onmessage = function(event) {
+            //var str = this.Utf8ArrayToStr(event.data);
+            var str = event.data;
+            console.log(str);
+
+            if (str.startsWith('{') && str.indexOf('instanceId') > 0) {
+              var res = JSON.parse(str);
+              this.addMessageToHtml(res, true);
+            } else {
+              addMessageToHtml(str, false);
+            }
+          };
+        }
+
+
+        clearHistoryData() {
+          var rows = $('#rows').val();
+          if ($('.msg_item').length > rows) {
+            $('.msg_item').first().remove();
+            this.clearHistoryData();
+          }
+        }
+        Utf8ArrayToStr(array) {
+          var out, i, len, c;
+          var char2, char3;
+
+          out = '';
+          len = array.length;
+          i = 0;
+          while (i < len) {
+            c = array[i++];
+            switch (c >> 4) {
+              case 0:
+              case 1:
+              case 2:
+              case 3:
+              case 4:
+              case 5:
+              case 6:
+              case 7:
+                // 0xxxxxxx
+                out += String.fromCharCode(c);
+                break;
+              case 12:
+              case 13:
+                // 110x xxxx   10xx xxxx
+                char2 = array[i++];
+                out += String.fromCharCode(((c & 0x1f) << 6) | (char2 & 0x3f));
+                break;
+              case 14:
+                // 1110 xxxx  10xx xxxx  10xx xxxx
+                char2 = array[i++];
+                char3 = array[i++];
+                out += String.fromCharCode(((c & 0x0f) << 12) | ((char2 & 0x3f) << 6) | ((char3 & 0x3f) << 0));
+                break;
+            }
+          }
+
+          return out;
+        }
+      }
+      let client = new MessageSocket({});
+
+      $('#chat_payload').val(Math.random() + '');
+      $('#btn_send').on('click', function () {
+        //发布数据
+        let topic = $('#chat_topic').val();
+        let payload = $('#chat_payload').val();
+        if (topic && payload) {
+          payload = '【' + getFormatTime() + '】' + client.getClientId() + '说：' + payload;
+          client.send(topic, payload);
+          $('#chat_payload').val(Math.random() + '');
+        }
+      });
+    </script>
+  </body>
+</html>

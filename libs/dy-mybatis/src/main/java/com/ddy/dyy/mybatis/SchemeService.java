@@ -3,7 +3,7 @@ package com.ddy.dyy.mybatis;
 import java.util.List;
 
 import com.ddy.dyy.mybatis.mapper.SchemeMapper;
-import com.ddy.dyy.mybatis.models.AssocArray;
+import com.ddy.dyy.web.models.biz.AssocArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

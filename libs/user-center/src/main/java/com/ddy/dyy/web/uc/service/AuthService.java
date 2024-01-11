@@ -7,9 +7,8 @@ import com.ddy.dyy.web.lang.Lang;
 import com.ddy.dyy.web.models.LogicException;
 import com.ddy.dyy.web.uc.mapper.UserMapper;
 import com.ddy.dyy.web.uc.models.LoginResponse;
-import com.ddy.dyy.web.uc.models.MyUserVO;
-import com.ddy.dyy.web.uc.models.RegisterForm;
-import com.ddy.dyy.web.uc.models.UserCreateBO;
+import com.ddy.dyy.web.uc.models.MyUserVo;
+import com.ddy.dyy.web.uc.models.UserCreateRequest;
 import com.ddy.dyy.web.uc.models.entity.UserEntity;
 import com.ddy.dyy.web.uc.utils.AuthUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,21 +49,14 @@ public class AuthService extends BaseServiceImpl<UserMapper, UserEntity> {
         loginResponse.setToken(StpUtil.getTokenValue());
         loginResponse.setTokenType("Bearer");
 
-        MyUserVO userVO = BeanUtils2.copy(user, MyUserVO.class);
+        MyUserVo userVO = BeanUtils2.copy(user, MyUserVo.class);
         loginResponse.setUserInfo(userVO);
 
         return loginResponse;
     }
 
-    public UserEntity createAppUser(long appId, RegisterForm form) {
-        String bigRole = "app";
-        UserCreateBO userCreateBO = BeanUtils2.copy(form, UserCreateBO.class);
-        // 添加用户
-        UserEntity user = addUser(appId, bigRole, userCreateBO);
-        return user;
-    }
 
-    public UserEntity addUser(long appId, String bigRole, UserCreateBO form) {
+    public UserEntity addUser(long appId, String bigRole, UserCreateRequest form) {
         form.setAppId(appId);
         form.setRole(bigRole);
 
@@ -77,7 +69,7 @@ public class AuthService extends BaseServiceImpl<UserMapper, UserEntity> {
         return user;
     }
 
-    private UserEntity buildNewUser(UserCreateBO form) {
+    private UserEntity buildNewUser(UserCreateRequest form) {
         UserEntity accountModel = BeanUtils2.copy(form, UserEntity.class);
         accountModel.setHeadIcon("http://cowthan-public.oss-cn-qingdao.aliyuncs.com/mgchrn2023/headicons/1.webp");
         accountModel.setUid(AuthUtils.generateUUID());

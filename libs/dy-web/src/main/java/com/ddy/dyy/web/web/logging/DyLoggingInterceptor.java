@@ -22,6 +22,7 @@ public class DyLoggingInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        logPrinter.beforeRequest();
         startTime.set(System.currentTimeMillis());
         return true;
     }
@@ -36,10 +37,6 @@ public class DyLoggingInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
             throws Exception {
-        long endTime = System.currentTimeMillis();
-//        System.out.println("End Time: " + new Date(endTime));
-//        System.out.println("Execution time: " + (endTime - startTime) + "ms"); }
-
         try {
             if (webProperties.getLogMode() != null && webProperties.getLogMode().contains("interceptor")) {
                 logPrinter.doPrint(request, response, startTime.get());

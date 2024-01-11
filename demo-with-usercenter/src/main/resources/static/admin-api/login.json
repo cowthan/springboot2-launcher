@@ -1,0 +1,16 @@
+{
+    "code": 200,
+    "data":{
+        "userId": 1,
+        "token": "1111",
+        "tokenType": "Berear",
+        "uid": "1111",
+        "userInfo": {
+            "nickName": "1111",
+            "uid": "1111",
+            "role": "dev",
+            "sid":"1111",
+            "headIcon":"http://mhfile.dongpaodi.com/xdoc/2023/04/30_c5f784cbf5633a06b1d9f6ec13d87f0c.png"
+        }
+    }
+}

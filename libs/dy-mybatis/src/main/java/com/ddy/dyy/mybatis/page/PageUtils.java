@@ -2,8 +2,8 @@ package com.ddy.dyy.mybatis.page;
 
 import java.util.List;
 
-import com.ddy.dyy.mybatis.models.PageList;
-import com.ddy.dyy.mybatis.models.PageRequest;
+import com.ddy.dyy.web.models.biz.PageList;
+import com.ddy.dyy.web.models.biz.PageRequest;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

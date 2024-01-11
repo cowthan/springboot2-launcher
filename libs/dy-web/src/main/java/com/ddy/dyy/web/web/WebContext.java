@@ -1,10 +1,16 @@
 package com.ddy.dyy.web.web;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import com.ddy.dyy.web.lang.Lang;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -39,9 +45,9 @@ public class WebContext implements ApplicationContextAware {
 
         String path = "";
         log.info("\n----------------------------------------------------------\n\t"
-                + "应用已启动，You can visit:\n\t"
+                + "Application started，You can visit:\n\t"
                 + "External: \thttp://" + ip + ":" + port + path + "/\n\t"
-                + "Local: \t\thttp://localhost:" + port + path + "/dy/index.html\n\t"
+                + "Local: \t\thttp://localhost:" + port + path + "/\n\t"
                 + "----------------------------------------------------------");
         return "http://localhost:" + port;
     }
@@ -68,4 +74,7 @@ public class WebContext implements ApplicationContextAware {
         HttpServletRequest request = servletRequestAttributes.getRequest();
         return request;
     }
+
+
+
 }

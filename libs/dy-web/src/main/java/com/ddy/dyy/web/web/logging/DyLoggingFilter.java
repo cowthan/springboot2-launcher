@@ -35,6 +35,7 @@ public class DyLoggingFilter extends OncePerRequestFilter {
                                     HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
+        logPrinter.beforeRequest();
         startTime.set(System.currentTimeMillis());
         filterChain.doFilter(request, response);
         try {
