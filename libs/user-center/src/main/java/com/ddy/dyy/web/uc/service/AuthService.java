@@ -26,9 +26,9 @@ public class AuthService extends BaseServiceImpl<UserMapper, UserEntity> {
     private UserMapper dao;
 
     @Transactional
-    public LoginResponse login(long appId, String account, String rawPassword, boolean checkPwd, String bigRole) {
+    public LoginResponse login(long appId, String account, String rawPassword, boolean checkPwd) {
         // 1 看账号密码对不对
-        UserEntity user = dao.getByUsername(appId, account, bigRole);
+        UserEntity user = dao.getByUsername(appId, account);
         if (user == null) {
             throw new LogicException(406, "账号未注册");
         } else {
@@ -66,9 +66,9 @@ public class AuthService extends BaseServiceImpl<UserMapper, UserEntity> {
 
     public UserEntity addUser(long appId, String bigRole, UserCreateBO form) {
         form.setAppId(appId);
-        form.setBigRole(bigRole);
+        form.setRole(bigRole);
 
-        UserEntity user = dao.getByUsername(appId, form.getUsername(), bigRole);
+        UserEntity user = dao.getByUsername(appId, form.getUsername());
         if (user != null && user.getDeleted() == 0) {
             throw new LogicException(406, "账号已存在");
         }
@@ -78,7 +78,8 @@ public class AuthService extends BaseServiceImpl<UserMapper, UserEntity> {
     }
 
     private UserEntity buildNewUser(UserCreateBO form) {
-        UserEntity accountModel = new UserEntity();
+        UserEntity accountModel = BeanUtils2.copy(form, UserEntity.class);
+        accountModel.setHeadIcon("http://cowthan-public.oss-cn-qingdao.aliyuncs.com/mgchrn2023/headicons/1.webp");
         accountModel.setUid(AuthUtils.generateUUID());
         accountModel.setPassword(AuthUtils.encodePassword(form.getPassword(), form.getUsername(), ""));
 
@@ -103,12 +104,13 @@ public class AuthService extends BaseServiceImpl<UserMapper, UserEntity> {
             }
         }
 
+        accountModel.setNickname("用户" + sid);
         accountModel.setSid(sid);
         return accountModel;
     }
 
-    public UserEntity getByUsername(long appId, String username, String bigRole) {
-        return dao.getByUsername(appId, username, bigRole);
+    public UserEntity getByUsername(long appId, String username) {
+        return dao.getByUsername(appId, username);
     }
 
     public UserEntity getByUid(String uid) {

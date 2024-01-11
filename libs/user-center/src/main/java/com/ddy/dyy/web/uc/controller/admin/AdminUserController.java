@@ -14,9 +14,9 @@ import com.ddy.dyy.web.uc.models.RequestData;
 import com.ddy.dyy.web.uc.models.UserCreateBO;
 import com.ddy.dyy.web.uc.models.admin.ChangeStatusForm;
 import com.ddy.dyy.web.uc.models.admin.PwdResetForm2;
-import com.ddy.dyy.web.uc.models.admin.RegisterForm2;
+import com.ddy.dyy.web.uc.models.admin.UserAddForm;
 import com.ddy.dyy.web.uc.models.admin.UserEditForm;
-import com.ddy.dyy.web.uc.models.admin.UserQuery1;
+import com.ddy.dyy.web.uc.models.admin.UserQuery;
 import com.ddy.dyy.web.uc.models.entity.UserEntity;
 import com.ddy.dyy.web.uc.service.AuthService;
 import com.ddy.dyy.web.uc.service.UserService;
@@ -49,7 +49,7 @@ public class AdminUserController extends BaseController {
     }
 
     @GetMapping("/list")
-    public Response<PageList> list(@Validated UserQuery1 form, @Validated PageRequest pageForm) {
+    public Response<PageList> list(@Validated UserQuery form, @Validated PageRequest pageForm) {
         RequestData requestData = AuthUtils.getRequestInfo(true, true);
         PageUtils.startPage(pageForm);
         form.setBigRole("app");
@@ -59,8 +59,11 @@ public class AdminUserController extends BaseController {
     }
 
     @GetMapping("/detail_for_edit")
-    public Response<UserEditForm> detail_for_edit(@RequestParam Long id) {
+    public Response<UserEditForm> detail_for_edit(@RequestParam(required = false, defaultValue = "0") Long id) {
         RequestData requestData = AuthUtils.getRequestInfo(true, true);
+        if(id == 0){
+            return Response.ok(null);
+        }
         checkRowExistsAndIsOwnedByThisApp(requestData.getAppId(), id);
         UserEntity UserEntity = userService.getById(id);
         UserEditForm r = BeanUtils2.copy(UserEntity, UserEditForm.class);
@@ -69,7 +72,7 @@ public class AdminUserController extends BaseController {
 
     //@OpLog(title = "用户管理", businessType = BusinessType.INSERT)
     @PostMapping("/add")
-    public Response<LongVo> add(@Validated @RequestBody RegisterForm2 form) {
+    public Response<LongVo> add(@Validated @RequestBody UserAddForm form) {
         RequestData requestData = AuthUtils.getRequestInfo(true, true);
         String bigRole = "app";
         UserCreateBO userCreateBO = BeanUtils2.copy(form, UserCreateBO.class);

@@ -6,9 +6,7 @@ CREATE TABLE `t_user` (
   `password` varchar(200) NOT NULL DEFAULT '' COMMENT '密码',
   `uid` varchar(100) NOT NULL DEFAULT '' COMMENT 'user id  微信openId',
   `sid` varchar(100) NOT NULL DEFAULT '' COMMENT '短id，一般是4位数，根据用户数量加长',
-  `big_role` varchar(24) NOT NULL DEFAULT '' COMMENT '大角色，admin，dev，app',
-  `app_role` varchar(100) NOT NULL DEFAULT '' COMMENT '角色，逗号分隔',
-  `admin_role` varchar(100) NOT NULL DEFAULT '' COMMENT '角色，逗号分隔',
+  `role` varchar(100) NOT NULL DEFAULT '' COMMENT '角色，逗号分隔，管理员admin，其他是user',
   `gender` tinyint(3) NOT NULL DEFAULT '0' COMMENT '性别，0表示未知，1表示男，2女表示女',
   `nickname` varchar(64) NOT NULL DEFAULT '' COMMENT '昵称',
   `head_icon` varchar(1024) NOT NULL DEFAULT '' COMMENT '姓名',
@@ -21,40 +19,10 @@ CREATE TABLE `t_user` (
   UNIQUE KEY `idx_sid` (`sid`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='用户表';
 
-INSERT INTO `t_user` (`id`, `app_id`, `username`, `password`, `gender`, `nickname`, `head_icon`, `uid`, `sid`, `big_role`, `app_role`, `admin_role`, `status`, `deleted`, `gmt_create`, `gmt_modified`)
+INSERT INTO `t_user` (`id`, `app_id`, `username`, `password`, `gender`, `nickname`, `head_icon`, `uid`, `sid`, `role`, `status`, `deleted`, `gmt_create`, `gmt_modified`)
 VALUES
-	(1, 1, '13333333333', '123456', 0, '二渠', 'http://image.bighole.club/magic/202107/14/1626192738701_8041.png', '1', '1', 'admin', '', '', 1, 0, '2021-06-20 00:31:34', '2021-06-20 14:53:48');
+	(1, 1, '13333333333', '123456', 0, '二渠', 'http://cowthan-public.oss-cn-qingdao.aliyuncs.com/mgchrn2023/headicons/1.webp', '1', '1', 'admin', 1, 0, '2021-06-20 00:31:34', '2021-06-20 14:53:48');
 
-
--- Create syntax for TABLE 't_user_profile'
-CREATE TABLE `t_user_profile` (
-  `id` bigint(20) unsigned NOT NULL COMMENT '主键',
-  `app_id` bigint(20) NOT NULL DEFAULT '0',
-  `user_id` bigint(20) NOT NULL COMMENT '用户id',
-  `username` varchar(100) NOT NULL DEFAULT '' COMMENT '账号，冗余字段',
-  `nickname` varchar(64) NOT NULL DEFAULT '' COMMENT '昵称',
-  `head_icon` varchar(1024) NOT NULL DEFAULT '' COMMENT '姓名',
-  `signature` varchar(256) NOT NULL DEFAULT '' COMMENT '签名',
-  `gender` tinyint(3) NOT NULL DEFAULT '0' COMMENT '性别，0表示未知，1表示男，2女表示女',
-  `email` varchar(100) NOT NULL DEFAULT '' COMMENT '邮箱',
-  `age` int(9) NOT NULL DEFAULT '0' COMMENT '年龄',
-  `birth` varchar(24) NOT NULL DEFAULT '' COMMENT '生日',
-  `mobile` varchar(32) NOT NULL DEFAULT '' COMMENT '用户mobile，最大长度32字符，非中国大陆手机号码需要填写国家代码(如美国：+1-xxxxxxxxxx)或地区代码(如香港：+852-xxxxxxxx)，可设置为空字符串',
-  `address` varchar(200) NOT NULL DEFAULT '' COMMENT '地址',
-  `extra` varchar(1024) NOT NULL DEFAULT '' COMMENT '扩展字段，json',
-  `status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '状态：1可用, 0禁用',
-  `deleted` tinyint(3) NOT NULL DEFAULT '0' COMMENT '逻辑删除',
-  `gmt_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '添加时间',
-  `gmt_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-  `lat` double(10,6) NOT NULL DEFAULT '0.000000',
-  `lon` double(10,6) NOT NULL DEFAULT '0.000000',
-  PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE KEY `idx_user_id` (`user_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='用户资料表';
-
-INSERT INTO `t_user_profile` (`id`, `app_id`, `user_id`, `username`, `nickname`, `head_icon`, `signature`, `gender`, `email`, `age`, `birth`, `mobile`, `address`, `extra`, `status`, `deleted`, `gmt_create`, `gmt_modified`, `lat`, `lon`)
-VALUES
-	(1, 1, 1, '13333333333', '二渠', 'http://image.bighole.club/magichorn2021-06/20/1624165737700_9721.png', '', 0, '13333333333@qq.com', 0, '', '13333333333', '', '', 1, 0, '2021-06-20 00:32:23', '2021-06-20 15:08:52', 0.000000, 0.000000);
 
 CREATE TABLE `t_user_session` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',

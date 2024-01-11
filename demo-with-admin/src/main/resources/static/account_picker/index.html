@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <title>账号领取</title>
+  <link rel="stylesheet" href="/account_picker/css/swiper.min.css">
+  <link rel="stylesheet" href="/account_picker/css/stynle.css">
+</head>
+<body>
+
+<!-- 主内容区 -->
+<div class="content">
+  <div class="title mt20">
+    <h2>领取账号 --【登录可修改账号、修改密码】</h2>
+  </div>
+
+  <div class="list mt10">
+    <ul id="ul_accounts">
+      <!--                <li>-->
+      <!--                    <a class="to-detail" href="javascript:">-->
+      <!--                        <img class="logo" src="{$item.avatar}" alt="">-->
+      <!--                        <div class="info">-->
+      <!--                            <h3 class="name">账号：{$item.account}</h3>-->
+      <!--                            <span class="time"></span>-->
+      <!--                        </div>-->
+      <!--                        <p class="desc">密码：{$item.password}</p>-->
+      <!--                    </a>-->
+      <!--                    <div class="down-btns btns2">-->
+      <!--                        <a class="btn btn-down" href="/api_gist/open/danger_login?id={$item.member_id}">我要这个</a>-->
+      <!--                    </div>-->
+      <!--                </li>-->
+
+    </ul>
+  </div>
+
+
+</div>
+
+<!-- footer -->
+<div class="footer">
+  <p>Copyright &copy; 2023. All Rights Reserved.</p>
+  <p><a href="#">magichorn</a> 版权所有</p>
+</div>
+
+<script src="/account_picker/js/jquery.min.js"></script>
+<script src="/account_picker/js/swiper.min.js"></script>
+<!--<script src="/account_picker/js/script.js"></script>-->
+<script>
+    $.get("/admin/user/register/list/account",{},function(data){
+         var accounts = data.data;
+         alert(data)
+         var li_list_html = '';
+         for (var i = 0; i < accounts.length; i++) {
+            var item = accounts[i];
+            var li = '';
+            li += '<li>';
+            li += '     <a class="to-detail" href="javascript:">';
+            li += '     <img class="logo" src="' + item.headIcon + '" alt="">';
+            li += '      <div class="info">';
+            li += '         <h3 class="name">账号：' + item.account + '</h3>';
+            li += '         <span class="time"></span>';
+            li += '      </div>';
+            li += '     <p class="desc">密码：' + item.password + '</p>';
+            li += ' </a>';
+            li += ' <div class="down-btns btns2">';
+            li += '      <button class="btn btn-down" onclick=\'pick("' + item.account+ '")\'>我要这个</button>';
+            li += ' </div>';
+            li += ' </li>';
+            li_list_html += li;
+        }
+        $('#ul_accounts').html(li_list_html);
+     });
+
+     function pick(account){
+        $.get('/admin/user/register/pick?account=' + account, {}, function(data){
+            if(data.code == 0 || data.code == 200){
+                alert("注册成功！账号：" + account + ", 密码：123456");
+            }else{
+                alert(data.label);
+            }
+        });
+     }
+</script>
+</body>
+</html>

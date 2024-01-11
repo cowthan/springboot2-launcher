@@ -5,17 +5,14 @@ import java.util.List;
 import javax.validation.Valid;
 
 import cn.dev33.satoken.stp.StpUtil;
-import com.ddy.dyy.web.lang.BeanUtils2;
 import com.ddy.dyy.web.lang.JsonUtils;
 import com.ddy.dyy.web.lang.Lang;
 import com.ddy.dyy.web.models.Response;
 import com.ddy.dyy.web.models.biz.BooleanVo;
 import com.ddy.dyy.web.uc.models.LoginResponse;
 import com.ddy.dyy.web.uc.models.RequestData;
-import com.ddy.dyy.web.uc.models.UserCreateBO;
-import com.ddy.dyy.web.uc.models.admin.AdminRegisterForm;
 import com.ddy.dyy.web.uc.models.admin.AdminUserProfileVO;
-import com.ddy.dyy.web.uc.models.admin.DevLoginForm;
+import com.ddy.dyy.web.uc.models.admin.LoginForm;
 import com.ddy.dyy.web.uc.models.admin.RouterVo;
 import com.ddy.dyy.web.uc.models.entity.AdminMenuEntity;
 import com.ddy.dyy.web.uc.models.entity.UserEntity;
@@ -42,21 +39,10 @@ public class AdminAuthController {
 
     @PostMapping("/login_pwd")
 //    @AvoidRepeatRequestByIp(limit = 1000L)
-    public Response<LoginResponse> login_pwd(@RequestBody @Valid DevLoginForm form) {
+    public Response<LoginResponse> login_pwd(@RequestBody @Valid LoginForm form) {
         RequestData r = AuthUtils.getRequestInfo(false, false);
         LoginResponse loginVO = authService.login(r.getAppId(), form.getUsername(),
-                form.getPassword(), true, "admin");
-        return Response.ok(loginVO);
-    }
-
-    @PostMapping(value = "/register")
-    public Response<LoginResponse> register(@RequestBody @Valid AdminRegisterForm form) {
-        RequestData r = AuthUtils.getRequestInfo(false, false);
-        UserCreateBO userCreateBO = BeanUtils2.copy(form, UserCreateBO.class);
-        UserEntity user = authService.addUser(r.getAppId(), "admin", userCreateBO);
-
-        LoginResponse loginVO = authService.login(0, form.getUsername(),
-                form.getPassword(), false, "admin");
+                form.getPassword(), true);
         return Response.ok(loginVO);
     }
 
@@ -65,7 +51,7 @@ public class AdminAuthController {
         RequestData r = AuthUtils.getRequestInfo(true, false);
         UserEntity user = authService.getById(r.getUserId());
         AdminUserProfileVO vo = new AdminUserProfileVO();
-        vo.setRole(new String[]{"admin"});
+        vo.setRole(new String[]{user.getRole()});
         vo.setUid(user.getUid());
         vo.setId(r.getUserId());
         vo.setHeadIcon(Lang.snull(user.getHeadIcon(), ""));
@@ -92,12 +78,12 @@ public class AdminAuthController {
         RequestData r = AuthUtils.getRequestInfo(true, false);
         AdminMenuEntity menu = adminMenuService.getOne(adminMenuService.lambdaWrapper()
                 .eq(AdminMenuEntity::getAppId, r.getAppId())
-                .eq(AdminMenuEntity::getBigRole, "admin")
+                .eq(AdminMenuEntity::getRole, "admin")
                 .eq(AdminMenuEntity::getStatus, 1));
         if (menu == null) {
             menu = adminMenuService.getOne(adminMenuService.lambdaWrapper()
                     .eq(AdminMenuEntity::getAppId, 0)
-                    .eq(AdminMenuEntity::getBigRole, "admin")
+                    .eq(AdminMenuEntity::getRole, "admin")
                     .eq(AdminMenuEntity::getStatus, 1));
         }
         String json = menu.getMenus();

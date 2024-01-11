@@ -33,6 +33,7 @@ import "@/assets/styles/ruoyi.scss"; // global css
 import "@/icons"; // icon
 import "@/permission"; // permission control
 import "vue-video-player/src/custom-theme.css";
+import { getDicts } from "@/api/dict";
 import "video.js/dist/video-js.css";
 import "lemon-imui/dist/index.css";
 import Clipboard from "clipboard";
@@ -46,6 +47,7 @@ Vue.config.productionTip = false;
 Vue.config.devtools = true;
 
 // 全局方法挂载
+Vue.prototype.getDicts = getDicts
 Vue.prototype.parseTime = parseTime;
 Vue.prototype.resetForm = resetForm;
 Vue.prototype.addDateRange = addDateRange;

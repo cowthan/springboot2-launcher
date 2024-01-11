@@ -20,9 +20,7 @@ public class UserEntity {
     private String password;
     private String uid;
     private String sid;
-    private String bigRole;
-    private String appRole;
-    private String adminRole;
+    private String role;
     private Integer gender;
     private String nickname;
     private String headIcon;

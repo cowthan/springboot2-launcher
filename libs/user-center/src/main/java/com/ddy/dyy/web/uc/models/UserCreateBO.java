@@ -11,8 +11,7 @@ public class UserCreateBO {
     private Long appId;
     private String username;
     private String password;
-    private String bigRole;
-    private String appRole;
+    private String role;
     private Integer gender;
     private String nickname;
     private String headIcon;

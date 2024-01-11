@@ -12,19 +12,12 @@ public class MyUserVO {
     @Length(min = 2, max = 64)
     private String nickname;
     private String username;
-
     private String headIcon;
-
     @Length(min = 0, max = 256)
     private String signature;
-
     @Range(min = 0, max = 2)
     private Integer gender;
-
-    private String birth;
-
-    private String extra;
-
+    private String phone = "未知";
+    private String email = "未知";
     private Date gmtCreate;
-
 }

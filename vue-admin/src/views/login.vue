@@ -71,6 +71,9 @@
           <span v-else>登 录 中...</span>
         </el-button>
       </el-form-item>
+        <el-form-item style="width:100%;">
+        <a target="_blank" href="/account_picker/index.html">快速注册</a>
+      </el-form-item>
     </el-form>
     <!--  底部  -->
     <div class="el-login-footer">

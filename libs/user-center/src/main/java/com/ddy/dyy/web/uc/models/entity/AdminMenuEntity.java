@@ -13,7 +13,7 @@ public class AdminMenuEntity {
     @TableId(type = IdType.AUTO)
     private Long id;
     private Long appId;
-    private String bigRole;
+    private String role;
     private String menus;
     private Integer status;
     private Date gmtCreate;

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ddy.dyy.web.uc.mapper.UserMapper">
+	<resultMap id="UserEntity" type="com.ddy.dyy.web.uc.models.entity.UserEntity"/>
+
+
+    <select id="selectUserList"  resultMap="UserEntity">
+		select * from t_user u
+		where u.deleted = 0 and u.app_id = #{appId}
+		<if test="form.username != null and form.username != ''">
+			AND u.username like concat('%', #{form.username}, '%')
+		</if>
+		<if test="form.bigRole != null and form.bigRole != ''">
+			AND u.role =#{form.bigRole}
+		</if>
+		<if test="form.status != null">
+			AND u.status = #{form.status}
+		</if>
+		order by u.id desc
+	</select>
+
+	<delete id="deleteUserByIds" parameterType="Long">
+		update t_user set deleted = id where id in
+		<foreach collection="ids" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper> 
