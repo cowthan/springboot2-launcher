@@ -1,0 +1,8 @@
+
+server.port: 9494
+debug: true
+
+common:
+  log:
+    enable: true
+    level: info

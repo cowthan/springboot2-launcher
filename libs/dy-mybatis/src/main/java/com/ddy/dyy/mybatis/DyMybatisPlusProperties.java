@@ -10,6 +10,6 @@ import org.springframework.stereotype.Component;
 @Getter @Setter
 public class DyMybatisPlusProperties {
     protected boolean logEnable;
-    protected String ignoreKeywords;
+    protected String logIgnoreKeywords;
     protected String logLevel = "info";
 }

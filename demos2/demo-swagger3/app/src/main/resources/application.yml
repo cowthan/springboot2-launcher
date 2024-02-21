@@ -1,0 +1,23 @@
+
+spring:
+  application:
+    name: 我的应用
+
+server:
+  port: 8081
+
+
+#swagger:
+#  enable: true
+#  application-name: ${spring.application.name}
+#  application-version: 1.0
+#  application-description: springfox swagger 3.0整合Demo
+#  try-host: http://localhost:${server.port}
+#
+#
+#springdoc:
+#  show-actuator: true
+#  swagger-ui:
+#    layout: BaseLayout
+#    operationsSorter: alpha
+#    tagsSorter: alpha

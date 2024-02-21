@@ -43,8 +43,8 @@ public class MybatisPlusLogInterceptor extends BaseMybatisLogInterceptor {
     @Override
     protected boolean shouldLog(String sql) {
         if (properties.isLogEnable()) {
-            if (properties.getIgnoreKeywords() != null) {
-                for (String k : properties.getIgnoreKeywords().split(",")) {
+            if (properties.getLogIgnoreKeywords() != null) {
+                for (String k : properties.getLogIgnoreKeywords().split(",")) {
                     if (!"".equals(k.trim()) && sql.contains(k.trim())) {
                         return false;
                     }

@@ -15,10 +15,11 @@ import org.apache.ibatis.jdbc.SqlRunner;
 public class MySqlIdGenerator {
     private final DataSource dataSource;
     private boolean tableExists = false;
-    private static final String TABLE_NAME = "t_id_generator";
+    private String tableName = "t_id_generator";
 
-    public MySqlIdGenerator(DataSource dataSource) {
+    public MySqlIdGenerator(DataSource dataSource, String tableName) {
         this.dataSource = dataSource;
+        this.tableName = tableName;
     }
 
     public synchronized long nextId(String biz) {
@@ -36,9 +37,9 @@ public class MySqlIdGenerator {
             //1、sql_version表创建
             synchronized (MySqlIdGenerator.class){
                 if (!tableExists) {
-                    Map<String, Object> r1 = sqlRunner.selectOne(getExistTableSql(dbName, TABLE_NAME));
+                    Map<String, Object> r1 = sqlRunner.selectOne(getExistTableSql(dbName, tableName));
                     if (r1 == null || "0".equals(String.valueOf(r1.get("R_COUNT")))) {
-                        scriptRunner.runScript(new StringReader(getCreateTableSql(TABLE_NAME)));
+                        scriptRunner.runScript(new StringReader(getCreateTableSql(tableName)));
                     }
                 }
                 tableExists = true;
@@ -50,7 +51,7 @@ public class MySqlIdGenerator {
             int retryCount = 0;
             while (id == 0) {
                 String sql = "select * from `%s` where biz = '%s'";
-                sql = String.format(sql, TABLE_NAME, biz);
+                sql = String.format(sql, tableName, biz);
                 Map<String, Object> bizRow = null;
                 try {
                     bizRow = sqlRunner.selectOne(sql);
@@ -59,13 +60,13 @@ public class MySqlIdGenerator {
                 }
                 if (bizRow == null) {
                     sql = "insert into %s (biz) values ('%s')";
-                    sql = String.format(sql, TABLE_NAME, biz);
+                    sql = String.format(sql, tableName, biz);
                     sqlRunner.insert(sql);
                     id = 1;
                 } else {
                     long currentId = (long) bizRow.get("VAL");
                     sql = "update %s set val = val + 1 where biz = '%s' and val = %s";
-                    sql = String.format(sql, TABLE_NAME, biz, currentId + "");
+                    sql = String.format(sql, tableName, biz, currentId + "");
                     int effectRow = sqlRunner.update(sql);
                     if (effectRow == 1) {
                         id = currentId + 1;

@@ -1,0 +1,11 @@
+
+server.port: 9999
+debug: false
+spring:
+  application.name: pure-sb
+  profiles.active: ${PROFILE:dev}
+  datasource:
+    username: root
+    password: Pwd_2018
+    url: jdbc:mysql://172.16.101.96:3306/demos?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver

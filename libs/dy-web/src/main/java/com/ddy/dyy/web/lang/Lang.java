@@ -257,6 +257,17 @@ public class Lang {
         }
     }
 
+    public static String fileGetContentFromResource(String path) {
+        Resource resource = new ClassPathResource(path);
+        String json = null;
+        try {
+            json = Lang.fileGetContent(resource.getInputStream());
+            return json;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /**
      * file_get_content
      *

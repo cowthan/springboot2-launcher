@@ -23,6 +23,8 @@
          <module>demo-with-admin</module>
          <module>demo-with-usercenter</module>
          <module>libs</module>
+         <module>demos1</module>
+         <module>demos2</module>
     </modules>
 	
     <dependencies>  

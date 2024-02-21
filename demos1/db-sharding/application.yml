@@ -1,0 +1,58 @@
+server.port: 4444
+
+
+MYSQL_HOST: 172.16.101.96
+MYSQL_PORT: 3306
+MYSQL_USERNAME: root
+MYSQL_PASSWORD: Pwd_2018
+
+
+
+common.web:
+  apiLogLevel: info
+  apiLogExcludeWords: metrics,actuator,health,
+  requestLogEnable: true
+  requestHeaderLogEnable: false
+  responseLogEnable: false
+  responseHeaderLogEnable: false
+  responseTimestamp: false
+  requestTimestamp: false
+
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  log-enable: true # 是否输出日志
+  log-level: info # 设置sql日志以什么等级输出，而不是选择输出哪个等级的日志
+  log-ignore-keywords: sync_to_geesatcom  # 过滤掉不想输出的关键字，如表名
+
+spring:
+  application:
+    name: blog
+  profiles:
+    active: ${PROFILE:dev}
+  shardingsphere: # https://www.cnblogs.com/heei/p/15167024.html?ivk_sa=1024320u
+    db-name: demos
+    datasource:
+      names: master # 指定数据源名字，多数据源以逗号分隔
+      master:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT:3306}/${spring.shardingsphere.db-name:demos}?useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=True&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2B8
+        username: ${MYSQL_USERNAME}
+        password: ${MYSQL_PASSWORD}
+    sharding:
+      defaultDataSourceName: master
+      tables:
+        t_blog:
+          actual-data-nodes: master.t_blog
+          table-strategy:
+            standard:
+              sharding-column: create_time
+              precise-algorithm-class-name: com.gee.blg.sharding.ShardingByWeekInMonth
+              range-algorithm-class-name: com.gee.blg.sharding.ShardingByWeekInMonth
+    props:
+      sql:
+        # 打印 sql
+        show: true
+
+
