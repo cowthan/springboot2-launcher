@@ -1,0 +1,2 @@
+
+纯BeanFactory的demo，看看原始BeanFactory怎么使用

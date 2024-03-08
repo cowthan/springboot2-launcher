@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -566,5 +568,85 @@ public class Lang {
 
     public static String snull(Object maybeNull) {
         return snull(maybeNull, "");
+    }
+
+    public static class NetworkEth {
+        private String name;
+        private String displayName;
+        private String host;
+
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getDisplayName() {
+            return displayName;
+        }
+
+        public void setDisplayName(String displayName) {
+            this.displayName = displayName;
+        }
+
+        public String getHost() {
+            return host;
+        }
+
+        public void setHost(String host) {
+            this.host = host;
+        }
+    }
+
+    public static List<NetworkEth> getIp() {
+        List<NetworkEth> ret = new ArrayList<>();
+        try {
+//            String host = Inet4Address.getLocalHost().getHostAddress();
+//            System.out.println(host); // 只能得到eth序号最大的网卡
+
+            /*
+            网卡：eth1, 是否虚拟：false, 是否Loopback：false, 是否up：true, 网卡名字：Intel(R) Ethernet Connection (11) I219-LM
+            10.139.106.41，false，false，false，false
+            网卡：eth5, 是否虚拟：false, 是否Loopback：false, 是否up：true, 网卡名字：VirtualBox Host-Only Ethernet Adapter
+            192.168.56.1，false，false，false，false
+            网卡：eth11, 是否虚拟：false, 是否Loopback：false, 是否up：true, 网卡名字：Hyper-V Virtual Ethernet Adapter
+            172.28.16.1，false，false，false，false
+             */
+            NetworkInterface.networkInterfaces().forEach(e -> {
+                try {
+                    if (e.isUp() && !e.isLoopback()) {
+//                        System.out.println("网卡：" + e.getName()
+//                                + ", 是否虚拟：" + e.isVirtual()
+//                                + ", 是否Loopback：" + e.isLoopback()
+//                                + ", 是否up：" + e.isUp()
+//                                + ", 网卡名字：" + e.getDisplayName()
+//                        );
+                        e.inetAddresses().forEach(f -> {
+                            if (f.getHostAddress().contains(".")) {
+                                NetworkEth eth = new NetworkEth();
+                                eth.setHost(f.getHostAddress());
+                                eth.setName(e.getName());
+                                eth.setDisplayName(e.getDisplayName());
+                                ret.add(eth);
+//                                System.out.println(f.getHostAddress() +
+//                                        "，" + f.isAnyLocalAddress() +
+//                                        "，" + f.isLinkLocalAddress() +
+//                                        "，" + f.isLoopbackAddress() +
+//                                        "，" + f.isMCGlobal());
+                            }
+                        });
+                    }
+                } catch (SocketException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+            });
+            return ret;
+        } catch (SocketException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

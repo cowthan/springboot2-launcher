@@ -1,0 +1,152 @@
+<html>
+<head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet"  href="/assets/bootstrap/css/bootstrap.css"/>
+    <script type="text/javascript" src="/assets/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="/assets/bootstrap/js/bootstrap.js"></script>
+</head>
+<body>
+<div id="container">
+    <table class="table table-striped" title="table" align="center">
+        <tr >
+            <td>员工编号</td>
+            <td>员工姓名</td>
+            <td>员工性别</td>
+            <td>员工电话</td>
+            <td>操作</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>xxx</td>
+            <td>xxxx</td>
+            <td> xxx</td>
+            <td>
+                <input type='button'  value='修改' title='update' class='btn btn-primary'/>
+                <input type='button' value='删除' title='delete' class='btn btn-warning'/>
+            </td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>xxx</td>
+            <td>xxxx</td>
+            <td> xxx</td>
+            <td>
+                <input type='button'  value='修改' title='update' class='btn btn-primary'/>
+                <input type='button' value='删除' title='delete' class='btn btn-warning'/>
+            </td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>xxx</td>
+            <td>xxxx</td>
+            <td> xxx</td>
+            <td>
+                <input type='button'  value='修改' title='update' class='btn btn-primary'/>
+                <input type='button' value='删除' title='delete' class='btn btn-warning'/>
+            </td>
+        </tr>
+    </table>
+    <input type="button" value="添加" title="update"/>
+</div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    添加
+</button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">员工信息添加</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">员工姓名</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control"  name="empname"  id="inputEmail3" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">员工性别</label>
+                        <div class="col-sm-10">
+                            <input type="radio" name="empsex" value="男" >男
+                            <input type="radio" name="empsex" value="女" title="female">女
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="col-sm-2 control-label">员工电话</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="phone"  name="phone" placeholder="phone">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" title="saveChange">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+/*
+    $(function (){
+            $.ajax({
+                type:"GET",
+                url:"${pageContext.request.contextPath}/users",
+                dataType:"json",
+                success:function (jsonarr){
+                    $(jsonarr).each(function (i,v){
+                        var tr = $("  <tr> <td>"+v.empid+"</td> <td>"+v.empname+"</td> <td>"+v.empsex+"</td> <td> "+v.phone+"</td> <td> <input type='button' value='修改' title='update' class='btn btn-primary'/><input type='button' value='删除' title='delete' class='btn btn-warning'/>"+"</td> </tr>");
+                        $("[title='table']").append(tr);
+                    });
+                }
+            });
+            //修改
+            $("#container").on('click','[title="update"]',function (){
+              var id = $(this).parents("tr").find("td:first").html();
+               alert(id);
+            });
+            //删除
+            $("#container").on('click','[title="delete"]',function (){
+                var empid= $(this).parents("tr").find("td:first").html();
+                $.ajax({
+                    // type: "POST",
+                    type:"DELETE",
+                    url:"${pageContext.request.contextPath}/users/"+empid,
+                    // data:"_method=delete",
+                    success: function (info){
+                        if(info=='success'){
+                            window.location.reload();
+                        }
+                    }
+                });
+            });
+            $("[title='saveChange']").click(function (){
+                var sex='男';
+                if($("[title='female']").get(0).checked){
+                    sex='女';
+                }
+
+
+                $.ajax({
+                    type: "POST",
+                    url:"${pageContext.request.contextPath}/users/",
+                    data:"empname="+$("[name='empname']").val()+"&phone="+$("[name='phone']").val()+"&empsex="+sex,
+                    success: function (info){
+                        if(info=='success'){
+                            window.location.reload();
+                        }
+                    }
+                });
+            });
+    })
+    */
+</script>
+</html>

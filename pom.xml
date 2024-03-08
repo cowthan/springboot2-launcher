@@ -18,13 +18,13 @@
     </properties>
 	
 	 <modules>
-         <module>demo</module>
          <module>demo-with-mybatis</module>
          <module>demo-with-admin</module>
          <module>demo-with-usercenter</module>
          <module>libs</module>
          <module>demos1</module>
          <module>demos2</module>
+         <module>v2-template</module>
     </modules>
 	
     <dependencies>  

@@ -1,14 +1,8 @@
 package com.ddy.dyy.web.web;
 
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import com.ddy.dyy.web.lang.Lang;
 import lombok.extern.slf4j.Slf4j;
@@ -37,44 +31,31 @@ public class WebContext implements ApplicationContextAware {
 
     public static String printServerInfo(ApplicationContext applicationContext) {
         Environment env = applicationContext.getEnvironment();
-        String ip = getLocalIp();
         String port = env.getProperty("server.port");
         if (port == null) {
             port = "8080";
         }
 
-        String path = "";
-        log.info("\n----------------------------------------------------------\n\t"
-                + "Application started，You can visit:\n\t"
-                + "External: \thttp://" + ip + ":" + port + path + "/\n\t"
-                + "Local: \t\thttp://localhost:" + port + path + "/\n\t"
-                + "----------------------------------------------------------");
+        String info = "";
+        info += "\n----------------------------------------------------------\n\t";
+        info += "App running at:\n";
+        info += "- Local: http://localhost:" + port + "\n";
+        List<Lang.NetworkEth> networkEths = Lang.getIp();
+        for (Lang.NetworkEth eth : networkEths) {
+            info += String.format("- %s(%s): http://%s:%s/\n", eth.getName(), eth.getDisplayName(), eth.getHost(), port);
+        }
+        info += "----------------------------------------------------------";
+        log.info(info);
         return "http://localhost:" + port;
     }
 
-    public static String getLocalIp() {
-        String ip = null;
 
-        try {
-            ip = InetAddress.getLocalHost().getHostAddress();
-            return ip;
-        } catch (UnknownHostException var2) {
-            throw new RuntimeException(var2);
-        }
-    }
-
-    /**
-     * 获取当前Request
-     *
-     * @return 结果
-     */
     public static HttpServletRequest currentRequest() {
         ServletRequestAttributes servletRequestAttributes =
                 (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = servletRequestAttributes.getRequest();
         return request;
     }
-
 
 
 }
