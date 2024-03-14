@@ -68,7 +68,15 @@ public class Lang {
      * @return result
      */
     public static String getNow() {
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        return getNow(false);
+    }
+
+    public static String getNow(boolean withMillseconds) {
+        String format = "yyyy-MM-dd HH:mm:ss";
+        if (withMillseconds) {
+            format += ".SSS";
+        }
+        return new SimpleDateFormat(format).format(new Date());
     }
 
     public static SimpleDateFormat getSimpleDateFormat(String format) {

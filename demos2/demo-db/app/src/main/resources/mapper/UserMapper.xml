@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.danger.t7.mapper.UserMapper">
+
+    <resultMap id="MessageEntity" type="com.danger.t7.entity.UserEntity"/>
+
+    <select id="findList" resultMap="MessageEntity">
+        select a.* from user a where deleted = 0
+        <if test="form.keyword != null and form.keyword != ''">
+            <bind name="bind_keyword" value="'%' + form.keyword + '%'" />
+            and (a.title like #{bind_keyword} or a.username like #{bind_keyword})
+        </if>
+        order by a.id desc
+    </select>
+
+</mapper>

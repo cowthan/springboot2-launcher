@@ -1,0 +1,13 @@
+spring:
+  redis:
+    host: ${redis_host:localhost}
+    port: ${redis_port:6379}
+    database: ${redis_database:0}
+    password: ${redis_password:}
+    maxActive: 10
+    maxWait: -1
+    maxIdle: 10
+    minIdle: 0
+    timeout: 5000
+    testOnBorrow: false
+    testOnReturn: false

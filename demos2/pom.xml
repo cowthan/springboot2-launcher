@@ -12,7 +12,7 @@
     <artifactId>demos2</artifactId>
     <packaging>pom</packaging>
     <modules>
-<!--        <module>OpenFeign</module>-->
+        <module>demo-jdbc</module>
     </modules>
 
 
