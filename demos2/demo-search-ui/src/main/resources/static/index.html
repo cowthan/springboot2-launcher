@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/index.css" type="text/css"/>
+
+
+</head>
+<body>
+    <div class="top"></div>
+    <div class="container" id="app">
+        <div class="row search">
+            <div class="col-md-6 col-md-offset-3">
+                <form>
+                    <div class="col-md-10">
+                        <input v-model="keyword" @keydown.enter="search" type="text" class="form-control search-input" id="exampleInputEmail1" placeholder="请输入关键字">
+                        <a @click="searchWord('java')">Java</a><span> |</span>
+                        <a @click="searchWord('Python')">Python</a><span> |</span>
+                        <a @click="searchWord('Spring')">Spring</a><span> |</span>
+                        <a @click="searchWord('Vue')">Vue</a><span> |</span>
+                        <a @click="searchWord('Linux')">Linux</a><span> |</span>
+                        <a @click="searchWord('JVM')">JVM</a><span> |</span>
+                        <a @click="searchWord('前端')">前端</a><span> |</span>
+                        <a @click="searchWord('后端')">后端</a><span> |</span>
+                        <a @click="searchWord('全栈')">全栈</a>
+                    </div>
+                    <button @click="search" type="button" class="btn btn-primary search-btn">搜索</button>
+                </form>
+
+            </div>
+        </div>
+        <div class="row content">
+            <div class="col-md-12">
+                <ul>
+                    <li v-for="book in results">
+                        <div class="item">
+                            <div class="image">
+                                <img :src="book.img" height="200px" width="220px">
+                            </div>
+                            <div class="price"><span>{{book.price}}</span></div>
+                            <div class="title"><span v-html="book.name"></span></div>
+                            <div class="shop"><span>{{book.shop}}</span></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row bottom" style="text-align: center">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script src="/js/vue.min.js"></script>
+<script src="/js/axios.min.js"></script>
+
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            keyword:'',
+            results:[]
+        },
+        created:function(){
+            this.searchWord('java')
+        },
+        methods:{
+            search:function (){
+                axios.get('/search?key='+this.keyword).then(response=>{
+                    this.results=response.data
+                })
+            },
+            searchWord:function (key){
+                axios.get('/search?key='+key).then(response=>{
+                    this.results=response.data
+                    this.keyword = key;
+                })
+            },
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,38 @@
+server.port: ${PORT:3333}
+spring.config.import:
+  - optional:file:${user.home}/.xx/env.properties
+  - optional:file:env/env-local.properties # 越靠后优先级越高，后面覆盖前面
+  - optional:classpath:env-local.properties
+
+
+#debug: true
+logging:
+  level:
+    root: info
+    org.springframework.kafka: warn
+    org.apache.kafka: warn
+    okhttp3: error
+
+
+dy.config:
+  web:
+    log-enable: true
+    log-level: info    # 用于控制打印log的日志等级，默认info，支持debug和warn
+    log-mode: interceptor
+    log-ignore-keywords: health,metrics  # 用于屏蔽某些关键词，逗号分隔
+    response-time-format: yyyy-MM-dd HH:mm:ss # 可选值： 默认 timestamps，ISO-8601，或SimpleDateFormat能接受的pattern
+    response-long-to-string: false  # 如果有long类型返回时被截断，需要以string形式返回，但这个配置是全局的
+    rest-controller-error-advice-enable: true # 开启DyWebExceptionHandler拦截Rest请求异常
+    websocket-enable: false # 是否开启websocket，会与web共享一个端口
+
+#spring.boot.admin.client.url: http://springboot-admin-server.geesatcom.corp
+#spring.boot.admin.client.instance.prefer-ip: true
+management.endpoints.web.exposure.include: '*'
+
+spring:
+  application.name: demo
+  profiles.active: ${PROFILE:local}
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+

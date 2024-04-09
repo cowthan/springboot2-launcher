@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>demo-jdbc</module>
+        <module>demo-search-ui</module>
     </modules>
 
 
